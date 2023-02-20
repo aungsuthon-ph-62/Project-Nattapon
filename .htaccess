@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+RewriteRule ^index?$ index.php
+RewriteRule ^admin?$ admin/index.php
+RewriteRule ^login?$ login.php
+RewriteRule ^register?$ register.php
+RewriteRule ^admin/page?$ admin/view/page.php

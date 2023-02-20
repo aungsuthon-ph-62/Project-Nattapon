@@ -1,0 +1,77 @@
+<header id="header" class="header fixed-top" data-scrollto-offset="0">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+        <a href="index" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+            <img src="admin/assets/img/logo-nobg.png" alt="Logo">
+            <!-- <h1>Logo<span>.</span></h1> -->
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+
+                <li><a class="nav-link active" href="index">หน้าหลัก</a></li>
+
+                <li class="dropdown "><a href="#"><span>หมวดหมู่สาขาวิชา</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul class="shadow">
+                        <?php
+                        $catFaculty = fetchCatFaculty($conn);
+                        $catFacultyCount = mysqli_num_rows($catFaculty);
+                        ?>
+                        <?php if ($catFacultyCount > 0) { ?>
+                            <?php foreach ($catFaculty as $row) { ?>
+                                <li><a href="<?= $row['id'] ?>"><?= $row['faculty_name'] ?></a></li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <div class="text-center py-5">
+                                <h3>ยังไม่มีรายการ</h3>
+                            </div>
+                        <?php } ?>
+                    </ul>
+                </li>
+
+                <li><a class="nav-link" href="index">หมวดหมู่จังหวัด</a></li>
+
+                <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
+                    <div class="d-block d-md-none">
+                        <li><a class="nav-link" href="index">ข้อมูลผู้ใช้</a></li>
+                        <li><a class="nav-link" href="index">ออกจากระบบ</a></li>
+                    </div>
+                <?php } else { ?>
+                    <div class="d-block d-md-none">
+                        <li><a class="nav-link" href="login">เข้าสู่ระบบ</a></li>
+                    </div>
+                <?php } ?>
+            </ul>
+
+            <i class="bi bi-list mobile-nav-toggle d-none"></i>
+        </nav><!-- .navbar -->
+
+        <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
+            <div class="d-md-block d-none">
+                <div class="btn-group">
+                    <a href="http://" class="me-auto mb-2 p-1">
+                        <div class="d-flex align-items-center">
+                            <div class="me-2"><img class="img-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 40px;"></div>
+                            <div class="me-auto">
+                                <?= $user['fname']; ?> <?= $user['lname']; ?>
+                            </div>
+                        </div>
+                    </a>
+                    <button type="button" class="btn text-dark border-0 rounded-5 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">ข้อมูลผู้ใช้</span>
+                    </button>
+                    <ul class="dropdown-menu border-0 shadow-lg">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-vcard-fill text-primary"></i> ข้อมูลผู้ใช้</a></li>
+                        <li class="px-3">
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket text-danger"></i> ออกจากระบบ</a></li>
+                    </ul>
+                </div>
+            </div>
+        <?php } else { ?>
+            <a class="btn-getstarted rounded-pill" href="login">เข้าสู่ระบบ</a>
+        <?php } ?>
+
+    </div>
+</header>

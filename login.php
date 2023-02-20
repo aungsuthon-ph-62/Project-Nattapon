@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
+    echo "<script> window.location.href='index';</script>";
+    exit;
+}
+
 include_once 'layout/head.php';
 include_once 'view/modal.php';
 ?>
@@ -49,8 +55,8 @@ include_once 'view/modal.php';
             </div>
         </div>
     </main>
-    <?php 
-        include_once 'view/alert.php';
+    <?php
+    include_once 'view/alert.php';
     ?>
 </body>
 

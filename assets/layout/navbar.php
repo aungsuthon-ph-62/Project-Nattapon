@@ -65,7 +65,7 @@
                         <li class="px-3">
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket text-danger"></i> ออกจากระบบ</a></li>
+                        <li><a class="dropdown-item" href="php/action.php?action=logout"><i class="fa-solid fa-right-from-bracket text-danger"></i> ออกจากระบบ</a></li>
                     </ul>
                 </div>
             </div>

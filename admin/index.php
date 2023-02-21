@@ -42,6 +42,11 @@ require_once "php/count/countMember.php";
     <?php include "assets/css/main.css"; ?>
   </style>
 
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+
   <?php $p = isset($_GET['p']) ? $_GET['p'] : ''; {
     if ($p == "addPost" || $p == "editPost" || $p == "postInfo") { ?>
       <!-- Select 2 -->
@@ -65,10 +70,7 @@ require_once "php/count/countMember.php";
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <?php include_once "view/alert.php"; ?>
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+
 
   <div class="wrapper">
 

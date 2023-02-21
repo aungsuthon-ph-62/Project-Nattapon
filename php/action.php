@@ -9,6 +9,9 @@ if (isset($_POST['action'])) {
     } elseif ($_POST['action'] == 'login') {
         login();
         exit;
+    } elseif ($_POST['action'] == 'editMember') {
+        editMember();
+        exit;
     }
 }
 
@@ -47,7 +50,7 @@ function register()
 
                         if ($check) {
                             $_SESSION['error'] = "อีเมลล์หรือรหัสนักศึกษานี้มีในระบบแล้ว!";
-                            header("Location: ../register.php");
+                            echo "<script> window.location.href='../index';</script>";
                             exit;
                         } else {
                             $query = "INSERT INTO user (email, pass, fname, lname, std_no, reg_date, status)
@@ -55,37 +58,37 @@ function register()
                             $result_query =  mysqli_query($conn, $query);
                             if ($result_query) {
                                 $_SESSION['success'] = "สมัครสมาชิกสำเร็จ!";
-                                header("Location: ../login.php");
+                                header("Location: ../login");
                                 exit;
                             } else {
                                 $_SESSION['error'] = "เกิดข้อผิดพลาด! กรุณาลองอีกครั้ง";
-                                header("Location: ../register.php");
+                                echo "<script> window.history.back()</script>";
                                 exit;
                             }
                         }
                     } else {
                         $_SESSION['error'] = "กรุณากรอกพาสเวิร์ด";
-                        header("Location: ../register.php");
+                        echo "<script> window.history.back()</script>";
                         exit;
                     }
                 } else {
                     $_SESSION['error'] = "กรุณากรอกเบอร์โทรศัพท์";
-                    header("Location: ../register.php");
+                    echo "<script> window.history.back()</script>";
                     exit;
                 }
             } else {
                 $_SESSION['error'] = "กรุณากรอกอีเมลล์";
-                header("Location: ../register.php");
+                echo "<script> window.history.back()</script>";
                 exit;
             }
         } else {
             $_SESSION['error'] = "กรุณากรอกนามสกุล";
-            header("Location: ../register.php");
+            echo "<script> window.history.back()</script>";
             exit;
         }
     } else {
         $_SESSION['error'] = "กรุณากรอกชื่อจริง";
-        header("Location: ../register.php?");
+        echo "<script> window.history.back()</script>";
         exit;
     }
 }
@@ -114,22 +117,22 @@ function login()
                     exit;
                 } else {
                     $_SESSION['error'] = "รหัสผ่านไม่ถูกต้อง";
-                    header('location: ../login');
+                    echo "<script> window.history.back()</script>";
                     exit;
                 }
             } else {
                 $_SESSION['error'] = "อีเมลล์ไม่ถูกต้อง";
-                header('location: ../login');
+                echo "<script> window.history.back()</script>";
                 exit;
             }
         } else {
             $_SESSION['error'] = "กรุณากรอกพาสเวิร์ด";
-            header("Location: ../login?");
+            echo "<script> window.history.back()</script>";
             exit;
         }
     } else {
         $_SESSION['error'] = "กรุณากรอกอีเมลล์";
-        header("Location: ../register?");
+        echo "<script> window.history.back()</script>";
         exit;
     }
 }
@@ -142,3 +145,77 @@ function logout()
     exit;
 }
 
+function editMember()
+{
+    session_start();
+    global $conn;
+
+    $user = mysqli_real_escape_string($conn, $_POST['uid']);
+    $oldImage = mysqli_real_escape_string($conn, $_POST['oldImage']);
+    $oldPass = mysqli_real_escape_string($conn, $_POST['oldPassword']);
+    $inputFname = mysqli_real_escape_string($conn, $_POST['inputFname']);
+    $inputLname = mysqli_real_escape_string($conn, $_POST['inputLname']);
+    $inputStdID = mysqli_real_escape_string($conn, $_POST['inputStdID']);
+    $inputEmail = mysqli_real_escape_string($conn, $_POST['inputEmail']);
+    $inputPassword = mysqli_real_escape_string($conn, $_POST['inputPassword']);
+
+    if ($inputPassword != '') {
+        $password = password_hash($inputPassword, PASSWORD_DEFAULT);
+    } else {
+        $password = $oldPass;
+    }
+
+    $imageName = $_FILES["inputImage"]["name"];
+    $tmpName = $_FILES["inputImage"]["tmp_name"];
+
+    if ($tmpName) {
+        if ($oldImage != '') {
+            // Delete the old picture
+            $unlink = unlink('../img/user_img/' . $oldImage);
+            if (!$unlink) {
+                $_SESSION['error'] = "ลบไฟล์ไม่สำเร็จ!";
+                echo "<script> window.history.back()</script>";
+                exit;
+            }
+        }
+        // Image extension valid
+        $validImgExt = ['jpg', 'jpeg', 'png', 'gif'];
+        $imgExt = explode('.', $imageName);
+
+        $name = $imgExt[0];
+        $imgExt = strtolower(end($imgExt));
+
+        if (!in_array($imgExt, $validImgExt)) {
+            $_SESSION['error'] = "นามสกุลของไฟล์ไม่ถูกต้อง!";
+            echo "<script> window.history.back()</script>";
+            exit;
+        } else {
+            $newImgName = $name . "-" . uniqid(); // Gen new img name
+            $newImgName .= "." . $imgExt;
+
+            $moveImg = move_uploaded_file($tmpName, '../img/user_img/' . $newImgName);
+
+            if (!$moveImg) {
+                $_SESSION['error'] = "ย้ายไฟล์ไม่สำเร็จ!";
+                echo "<script> window.history.back()</script>";
+                exit;
+            }
+        }
+    } else {
+        $newImgName = $oldImage;
+    }
+
+    $query = "UPDATE user SET fname='$inputFname', lname='$inputLname', std_no='$inputStdID', email='$inputEmail', pass='$password', img_user='$newImgName' WHERE id = '$user'";
+    $result_query =  mysqli_query($conn, $query);
+    if ($result_query) {
+        $_SESSION['success'] = "แก้ไขรายการสำเร็จ!";
+        header("Location: ../profile#blog");
+        mysqli_close($conn);
+        exit;
+    } else {
+        $_SESSION['error'] = "เกิดข้อผิดพลาด! กรุณาลองอีกครั้ง";
+        echo "<script> window.history.back()</script>";
+        mysqli_close($conn);
+        exit;
+    }
+}

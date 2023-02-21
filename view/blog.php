@@ -1,6 +1,14 @@
 <?php
-$limit = 10;
-$post = fetchPost($conn, $limit);
+
+$perpage = 10;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+
+$start = ($page - 1) * $perpage;
+$post = fetchMainPost($conn, $start, $perpage);
 $postCount = mysqli_num_rows($post);
 
 ?>
@@ -9,10 +17,10 @@ $postCount = mysqli_num_rows($post);
     <?php if ($postCount > 0) { ?>
         <?php foreach ($post as $row) { ?>
             <div class="col-lg-6">
-                <article class="d-flex flex-column" data-aos="zoom-out" delay="500">
+                <article class="d-flex flex-column" data-aos="zoom-out" data-aos-delay="10000">
 
                     <div class="post-img">
-                        <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid" data-aos="fade-in" delay="2000">
+                        <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid" data-aos="fade-in" data-aos-delay="1000">
                     </div>
 
                     <h2 class="title">
@@ -38,7 +46,7 @@ $postCount = mysqli_num_rows($post);
                             <?php $catFaculty = catFaculty($conn, $row['faculty_ref']); ?>
                             <ul class="cats">
                                 <?php foreach ($catFaculty as $rowFac) { ?>
-                                    <li><a href="<?= $rowFac['faculty_name']; ?>"><?= $rowFac['faculty_name']; ?></a></li>
+                                    <li><a href="?page=search&search=<?= $rowFac['faculty_name'] ?>"><?= $rowFac['faculty_name']; ?></a></li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -48,7 +56,7 @@ $postCount = mysqli_num_rows($post);
                             <?php $catProvinces = catProvinces($conn, $row['provinces_ref']); ?>
                             <ul class="cats">
                                 <?php foreach ($catProvinces as $rowPro) { ?>
-                                    <li><a href="<?= $rowPro['cp_name']; ?>"><?= $rowPro['cp_name']; ?></a></li>
+                                    <li><a href="?page=search&search=<?= $rowPro['cp_name'] ?>"><?= $rowPro['cp_name']; ?></a></li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -65,9 +73,12 @@ $postCount = mysqli_num_rows($post);
 
         <div class="blog-pagination">
             <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+                <?php $totalPage = pagination($conn, $perpage); ?>
+                <li class="rounded"><a href="?page=1"><i class="bi bi-caret-left-fill text-secondary"></i></a></li>
+                <?php for ($i = 1; $i <= $totalPage; $i++) { ?>
+                    <li class="rounded"><a href="?page=<?= $i ?>"><?= $i ?></a></li>
+                <?php } ?>
+                <li class="rounded"><a href="?page=<?= $totalPage ?>"><i class="bi bi-caret-right-fill text-secondary"></i></a></li>
             </ul>
         </div><!-- End blog pagination -->
 

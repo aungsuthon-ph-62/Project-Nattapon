@@ -19,7 +19,7 @@
                         ?>
                         <?php if ($catFacultyCount > 0) { ?>
                             <?php foreach ($catFaculty as $row) { ?>
-                                <li><a href="<?= $row['id'] ?>"><?= $row['faculty_name'] ?></a></li>
+                                <li><a href="?page=search&search=<?= $row['faculty_name'] ?>"><?= $row['faculty_name'] ?></a></li>
                             <?php } ?>
                         <?php } else { ?>
                             <div class="text-center py-5">
@@ -29,7 +29,25 @@
                     </ul>
                 </li>
 
-                <li><a class="nav-link" href="index">หมวดหมู่จังหวัด</a></li>
+                <li class="dropdown "><a href="#"><span>หมวดหมู่จังหวัด</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul class="shadow">
+                        <?php
+                        require_once "admin/assets/vendor/province-db/conn.php";
+                        $provSql = "SELECT * FROM provinces ORDER BY name_th ASC";
+                        $queryProv = mysqli_query($connProvinces, $provSql) or die("database error:" . mysqli_error($connProvinces));
+                        $catProCount = mysqli_num_rows($queryProv);
+                        ?>
+                        <?php if ($catProCount > 0) { ?>
+                            <?php foreach ($queryProv as $row) { ?>
+                                <li><a href="?page=search&search=<?= $row['name_th'] ?>"><?= $row['name_th'] ?></a></li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <div class="text-center py-5">
+                                <h3>ยังไม่มีรายการ</h3>
+                            </div>
+                        <?php } ?>
+                    </ul>
+                </li>
 
                 <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
                     <div class="d-block d-md-none">
@@ -49,9 +67,9 @@
         <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
             <div class="d-md-block d-none">
                 <div class="btn-group">
-                    <a href="http://" class="me-auto mb-2 p-1">
+                    <a href="profile" class="me-auto mb-2 p-1">
                         <div class="d-flex align-items-center">
-                            <div class="me-2"><img class="img-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 40px;"></div>
+                            <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px;"></div>
                             <div class="me-auto">
                                 <?= $user['fname']; ?> <?= $user['lname']; ?>
                             </div>
@@ -61,7 +79,7 @@
                         <span class="visually-hidden">ข้อมูลผู้ใช้</span>
                     </button>
                     <ul class="dropdown-menu border-0 shadow-lg">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-vcard-fill text-primary"></i> ข้อมูลผู้ใช้</a></li>
+                        <li><a class="dropdown-item" href="profile"><i class="bi bi-person-vcard-fill text-primary"></i> ข้อมูลผู้ใช้</a></li>
                         <li class="px-3">
                             <hr class="dropdown-divider">
                         </li>

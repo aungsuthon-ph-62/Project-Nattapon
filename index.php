@@ -40,19 +40,16 @@
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs p-0">
-      <div class="container w-50" data-aos="zoom-in" delay="7000">
-        <a href="index" class="logo d-flex align-items-center justify-content-center">
-          <img src="admin/assets/img/logo-horizon.jpg" class="img-fluid" alt="Logo">
-          <!-- <h1>Logo<span>.</span></h1> -->
-        </a>
+    <section id="hero-animated" class="hero-animated d-flex align-items-center shadow-lg">
+      <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out" data-aos-delay="7000">
+        <img src="admin/assets/img/logo-horizon-removebg-preview.png" class="img-fluid animated">
       </div>
-    </div>
+    </section>
     <!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
-      <div class="container" data-aos="fade-up">
+      <div class="container py-md-5" data-aos="fade-up" data-aos-delay="10000">
 
         <div class="row g-5">
 
@@ -63,6 +60,9 @@
             if ($page) { ?>
               <?php
               switch ($page) {
+                case "search":
+                  include_once 'view/search.php';
+                  break;
                 case "post-detail":
                   include_once 'view/post-details.php';
                   break;
@@ -121,11 +121,7 @@
   <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
     <?php mysqli_free_result($fetchUser); ?>
   <?php } ?>
-  <?php mysqli_free_result($queryProv); ?>
-  <?php mysqli_free_result($countComment); ?>
-  <?php mysqli_free_result($catFaculty); ?>
-  <?php mysqli_free_result($catProvinces); ?>
-  <?php mysqli_free_result($post); ?>
+
 
 </body>
 

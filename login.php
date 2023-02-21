@@ -1,60 +1,73 @@
 <?php
 session_start();
-
 if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
-    echo "<script> window.location.href='index';</script>";
+    echo "<script> window.history.back()</script>";
     exit;
 }
-
-include_once 'layout/head.php';
-include_once 'view/modal.php';
 ?>
 
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <?php
+    include_once 'assets/layout/head.php';
+    ?>
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+
 <body>
-    <main class="vh-100" style="background-color: #42BDED;">
-        <div class="container py-5 p-md-5 h-100">
-            <div class="py-3 py-md-5">
-                <div class="container py-5 p-md-5">
-                    <div class="card bg-white border border-3 rounded-5 shadow position-relative">
-                        <img src="img/user.png" alt="" class="img-fluid position-absolute translate-middle start-50" style="width: auto; height: 13rem;">
-                        <div class="card-body py-5 py-md-0 p-md-5 mt-5 mt-md-5">
-                            <h1 class="text-center fw-light my-4 my-md-0">Login</h1>
-                            <div class="container p-md-5 my-3 my-md-0">
-                                <form class="px-md-5 py-3 py-md-0" action="php/action.php" method="post">
-                                    <input type="hidden" name="action" value="login">
-                                    <div class="mb-3 px-md-5">
-                                        <div class="form-floating col-12 mb-3 mb-md-4 ">
-                                            <input type="text" class="form-control shadow" id="inputEmail" name="inputEmail" placeholder="กรอกชื่อผู้ใช้">
-                                            <label for="inputEmail"> อีเมลล์</label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 px-md-5">
-                                        <div class="form-floating col-12 mb-3 mb-md-4 ">
-                                            <input type="password" class="form-control shadow" id="inputPassword" name="inputPassword" placeholder="กรอกรหัสผ่าน" autocomplete="on">
-                                            <label for="inputPassword"> รหัสผ่าน</label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 px-md-5 text-end">
-                                        <a role='button' class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#changePassword">ลืมรหัสผ่าน ?</a>
-                                    </div>
-                                    <div class="d-grid gap-2 px-md-5">
-                                        <button type="submit" class="btn btn-lg text-light" style="background-color: #42BDED;">เข้าสู่ระบบ</button>
-                                    </div>
-                                </form>
-                                <div class="mt-3 px-md-5 text-center">
-                                    <a href="register.php" class="text-decoration-none h5">ลงทะเบียน</a>
-                                </div>
-                                <div class="mt-3 d-flex justify-content-center">
-                                    <a href="forgot_password.php" class="btn btn-danger btn-lg mx-2"><i class="fa-brands fa-google-plus-g"></i></a>
-                                    <a href="forgot_password.php" class="btn btn-primary btn-lg mx-2"><i class="fa-brands fa-facebook-f"></i></a>
-                                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto  py-5">
+                <div class="card border-0 shadow-lg rounded-3 my-5 py-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">เข้าสู่ระบบ</h5>
+                        <form action="php/action.php" method="post" autocomplete="on">
+                            <input type="hidden" name="action" value="login">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control border-2 border-bottom border-top-0 border-start-0 border-end-0 rounded-0" id="inputEmail" name="inputEmail" placeholder="กรอกอีเมลล์">
+                                <label for="inputEmail">อีเมลล์</label>
                             </div>
-                        </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control border-2 border-bottom border-top-0 border-start-0 border-end-0 rounded-0" id="inputPassword" name="inputPassword" placeholder="กรอกรหัสผ่าน">
+                                <label for="inputPassword">รหัสผ่าน</label>
+                            </div>
+
+                            <div class="d-grid mb-3">
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold rounded-5" type="submit">
+                                    เข้าสู่ระบบ
+                                </button>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                <p class="m-0">หากยังเคยสมัครสมาชิก - <a href="register">คลิ๊กที่นี่!</a></p>
+                            </div>
+                            <hr class="my-3">
+                            <div class="d-grid mt-5 mb-2 px-5">
+                                <button class="btn btn-danger btn-login text-uppercase fw-bold" type="submit">
+                                    <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
+                                </button>
+                            </div>
+                            <div class="d-grid px-5">
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                                    <i class="fab fa-facebook-f me-2"></i> เข้าสู่ระบบด้วย Facebook
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
     <?php
     include_once 'view/alert.php';
     ?>

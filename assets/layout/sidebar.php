@@ -2,8 +2,8 @@
 
     <div class="sidebar-item search-form">
         <h3 class="sidebar-title">ค้นหา</h3>
-        <form action="" class="mt-3">
-            <input type="text">
+        <form action="php/fetch.php" method="post" class="mt-3">
+            <input type="text" name="search">
             <button type="submit"><i class="bi bi-search"></i></button>
         </form>
     </div><!-- End sidebar search formn-->
@@ -17,7 +17,7 @@
             ?>
             <?php if ($catFacultyCount > 0) { ?>
                 <?php foreach ($catFaculty as $row) { ?>
-                    <li><a href="<?= $row['id'] ?>"><?= $row['faculty_name'] ?></a></li>
+                    <li><a href="?page=search&search=<?= $row['faculty_name'] ?>"><?= $row['faculty_name'] ?></a></li>
                 <?php } ?>
             <?php } else { ?>
                 <div class="text-center py-5">
@@ -61,13 +61,15 @@
         <h3 class="sidebar-title">หมวดหมู่จังหวัด</h3>
         <ul class="mt-3">
             <?php
-            $queryProv = fetchCatProvinces();
+            require_once "admin/assets/vendor/province-db/conn.php";
+            $provSql = "SELECT * FROM provinces ORDER BY name_th ASC";
+            $queryProv = mysqli_query($connProvinces, $provSql) or die("database error:" . mysqli_error($connProvinces));
             ?>
             <?php foreach ($queryProv as $rowPro) {
             ?>
-                <li><a href="<?= $rowPro['name_th'] ?>"><?= $rowPro['name_th'] ?></a></li>
+                <li><a href="?page=search&search=<?= $rowPro['name_th'] ?>"><?= $rowPro['name_th'] ?></a></li>
             <?php } ?>
         </ul>
     </div><!-- End sidebar tags-->
-
+    <?php mysqli_free_result($queryProv); ?>
 </div>

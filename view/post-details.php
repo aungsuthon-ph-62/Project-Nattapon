@@ -8,17 +8,17 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
   <article class="blog-details">
 
     <div class="post-img">
-      <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid w-100" data-aos="zoom-in" delay="5000">
+      <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid w-100" data-aos="zoom-in" data-aos-delay="15000">
     </div>
 
     <h2 class="title"><?= $row['post_topic'] ?></h2>
 
     <div class="meta-top">
       <ul>
-        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html"><?= $row['status'] ?></a></li>
-        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="<?= $row['post_date'] ?>"><?= DateThai($row['post_date']) ?></time></a></li>
+        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><?= $row['status'] ?></a></li>
+        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><time datetime="<?= $row['post_date'] ?>"><?= DateThai($row['post_date']) ?></time></a></li>
         <?php $countComment = countComments($conn, $row['id']); ?>
-        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">
+        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>">
             <?php foreach ($countComment as $countComments) { ?>
               <?= $countComments['noComments']; ?> ความคิดเห็น
             <?php } ?></a></li>
@@ -26,14 +26,14 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
     </div><!-- End meta top -->
 
     <div class="content">
-      <article style="display:block">
+      <article style="display:block" data-aos="fade-in" data-aos-delay="20000">
         <?php print_r($row['post_content']); ?>
       </article>
     </div><!-- End post content -->
 
     <div class="contact border-top">
       <h5><i class="fa-solid fa-location-dot text-danger mt-4"></i> ที่อยู่บริษัท</h5>
-      <div class="map">
+      <div class="map" data-aos="zoom-out" data-aos-delay="5000">
         <iframe src="https://maps.google.com/maps?q=<?= $row['post_topic'] ?>,<?= $row['post_address'] ?>&output=embed" frameborder="0" allowfullscreen></iframe>
       </div><!-- End Google Maps -->
     </div>
@@ -60,7 +60,7 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
 
 
 
-  <div class="comments">
+  <div class="comments" data-aos="fade-in" data-aos-delay="7000">
     <h4 class="comments-count">
       <?php foreach ($countComment as $countComments) { ?>
         <?= $countComments['noComments']; ?> ความคิดเห็น
@@ -73,7 +73,12 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
         <div class="d-flex">
           <div class="comment-img"><img src="img/user_img/<?= $comment['img_user']; ?>" alt=""></div>
           <div>
-            <h5><?= $comment['fname'] ?> <?= $comment['lname']; ?></h5>
+            <h5><?= $comment['fname'] ?> <?= $comment['lname']; ?> : <span class="fw-normal"><i class="bi bi-person-fill <?php if ($comment['status'] == "Member") {
+                                                                                                                            echo "text-primary";
+                                                                                                                          } else {
+                                                                                                                            echo "text-danger";
+                                                                                                                          } ?>"></i> <?= $comment['status'] ?> </span></h5>
+
             <time datetime="<?= $comment['comment_at'] ?>"><?= DateThaiTime($comment['comment_at']); ?></time>
             <p class="text-break">
               <?= $comment['comment'] ?>
@@ -115,6 +120,10 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
 
 
   </div><!-- End blog comments -->
+  <?php mysqli_free_result($countComment); ?>
+  <?php mysqli_free_result($catFaculty); ?>
+  <?php mysqli_free_result($catProvinces); ?>
+  <?php mysqli_free_result($post); ?>
   <?php mysqli_free_result($comments); ?>
 <?php  } else {
   header("Location: ../index");

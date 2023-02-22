@@ -16,7 +16,7 @@ function fetchUser($conn, $id)
 function fetchMainPost($conn, $start, $perpage)
 {
     $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
-u.fname, u.lname, u.status
+u.fname, u.lname, u.status, p.post_view, p.post_rating
 FROM post_tbl as p 
 INNER JOIN user as u ON u.id = p.post_by 
 ORDER BY p.id DESC 
@@ -30,7 +30,7 @@ LIMIT {$start}, {$perpage}";
 function fetchPost($conn, $limit)
 {
     $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
-u.fname, u.lname, u.status
+u.fname, u.lname, u.status, p.post_view, p.post_rating
 FROM post_tbl as p 
 INNER JOIN user as u ON u.id = p.post_by 
 ORDER BY p.id DESC 
@@ -44,7 +44,7 @@ LIMIT {$limit}";
 function post($conn, $unid)
 {
     $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
-u.fname, u.lname, u.status
+u.fname, u.lname, u.status, p.post_view, p.post_rating
 FROM post_tbl as p 
 INNER JOIN user as u ON u.id = p.post_by 
 WHERE p.post_unid = '$unid'";
@@ -72,10 +72,10 @@ function fetchCatProvinces()
 
 function fetchComment($conn, $id)
 {
-    $sql = "SELECT c.comment_id, c.post_ref, c.parent_id, c.comment, c.comment_by, c.comment_at, u.id, u.fname, u.lname, u.img_user, u.status
+    $sql = "SELECT c.comment_id, c.post_ref, c.comment, c.comment_by, c.comment_at, c.user_rating, u.id, u.fname, u.lname, u.img_user, u.status
     FROM comment as c
     INNER JOIN user as u ON u.id = c.comment_by
-    WHERE c.parent_id = '0' AND c.post_ref = '$id' ORDER BY c.comment_id DESC";
+    WHERE c.post_ref = '$id' ORDER BY c.comment_id DESC";
     $comment = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
 
     return $comment;
@@ -121,7 +121,7 @@ function search($conn, $input)
 {
     $inp = $input;
     $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
-    u.fname, u.lname, u.status, fac.faculty_name, cp.cp_name
+    u.fname, u.lname, u.status, fac.faculty_name, cp.cp_name, p.post_view, p.post_rating
     FROM post_tbl as p
     INNER JOIN user as u ON u.id = p.post_by
     INNER JOIN category_provinces as cp ON cp.cp_postref = p.provinces_ref

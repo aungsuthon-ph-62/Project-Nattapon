@@ -219,3 +219,39 @@ function editMember()
         exit;
     }
 }
+
+if (isset($_POST['edit_row']))
+{
+    global $conn;
+
+    $edit_row = mysqli_real_escape_string($conn, $_POST['edit_row']);
+    $edit_review = mysqli_real_escape_string($conn, $_POST['edit_userReview']);
+    $new_rating_data = $_POST['new_rating_data'];
+
+    $query = "UPDATE comment SET comment='$edit_review', user_rating='$new_rating_data' WHERE comment_id = '$edit_row'";
+    $result_query =  mysqli_query($conn, $query);
+    
+    echo "แก้ไขรายการสำเร็จ!" ;
+}
+
+if (isset($_GET['deleteReview']) && isset($_GET['post_data'])) {
+    global $conn;
+    $id = $_GET['deleteReview'];
+    $post = $_GET['post_data'];
+
+    $sql = "DELETE FROM comment WHERE comment_id = '$id'";
+    $query = $conn->query($sql);
+
+    if ($query) {
+        $_SESSION['success'] = "ลบรายการสำเร็จ!";
+        mysqli_close($conn);
+        echo "<script> window.history.back()</script>";
+        exit;
+    } else {
+        $_SESSION['error'] = "เกิดข้อผิดพลาด! กรุณาลองอีกครั้ง";
+        mysqli_close($conn);
+        echo "<script> window.history.back()</script>";
+        exit;
+    }
+}
+

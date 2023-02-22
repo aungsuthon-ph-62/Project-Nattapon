@@ -6,10 +6,11 @@ if(!empty($_POST["comment"])){
 
     $commentID = mysqli_real_escape_string($conn, $_POST["commentId"]);
     $sender = mysqli_real_escape_string($conn, $_POST["sender"]);
-    $postID = mysqli_real_escape_string($conn, $_POST["postID"]);
+    $post_ref = mysqli_real_escape_string($conn, $_POST["post_ref"]);
     $comment = mysqli_real_escape_string($conn, $_POST["comment"]);
+    $rating_data = mysqli_real_escape_string($conn, $_POST["rating_data"]);
 
-	$insertComments = "INSERT INTO comment (post_ref, parent_id, comment, comment_by, comment_at) VALUES ('$postID', '$commentID', '$comment', '$sender', '$date')";
+	$insertComments = "INSERT INTO comment (post_ref, parent_id, comment, user_rating, comment_by, comment_at) VALUES ('$post_ref', '$commentID', '$rating_data', '$comment', '$sender', '$date')";
 	mysqli_query($conn, $insertComments) or die("database error: ". mysqli_error($conn));	
 	$message = 'แสดงความคิดเห็นสำเร็จ!';
 	$status = array(
@@ -17,7 +18,7 @@ if(!empty($_POST["comment"])){
 		'message' => $message
 	);	
 } else {
-	$message = '<label class="text-danger">Error: กรุณาเขียนความคิดเห็น!</label>';
+	$message = '<label class="text-danger">Error: กรุณาเขียนความคิดเห็น! </label>';
 	$status = array(
 		'error'  => 1,
 		'message' => $message

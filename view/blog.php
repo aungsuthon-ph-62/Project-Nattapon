@@ -28,21 +28,23 @@ $postCount = mysqli_num_rows($post);
                     </h2>
 
                     <div class="meta-top">
-                        <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><?= $row['status'] ?></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><time datetime="<?= $row['post_date'] ?>"><?= DateThai($row['post_date']) ?></time></a></li>
+                        <ul class="row">
+                            <li class="d-flex align-items-center col-auto"><i class="bi bi-person"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><?= $row['status'] ?></a></li>
+                            <li class="d-flex align-items-center col-auto"><i class="bi bi-clock"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><time datetime="<?= $row['post_date'] ?>"><?= DateThai($row['post_date']) ?></time></a></li>
                             <?php $countComment = countComments($conn, $row['id']); ?>
-                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>">
+                            <li class="d-flex align-items-center col-auto"><i class="bi bi-chat-dots"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>">
                                     <?php foreach ($countComment as $countComments) { ?>
-                                        <?= $countComments['noComments']; ?> ความคิดเห็น
+                                        <?= $countComments['noComments']; ?> รีวิว
                                     <?php } ?></a></li>
+                            <li class="d-flex align-items-center col-auto"><i class="bi bi-eye"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><?= $row['post_view'] ?> ครั้ง</a></li>
+                            <li class="d-flex align-items-center col-auto"><i class="bi bi-star-fill text-warning"></i> <a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><?= $row['post_rating'] ?> คะแนน</a></li>
                         </ul>
                     </div>
 
                     <div class="content">
 
                         <div class="mb-3">
-                            <h6 class="bg-light p-1 rounded-4 text-center"><i class="fa-solid fa-tags text-info"></i> หมวดหมู่สาขาวิชา :</h6>
+                            <h6 class="bg-light p-1 rounded-4 text-center"><i class="fa-solid fa-tags text-secondary"></i> หมวดหมู่สาขาวิชา :</h6>
                             <?php $catFaculty = catFaculty($conn, $row['faculty_ref']); ?>
                             <ul class="cats">
                                 <?php foreach ($catFaculty as $rowFac) { ?>

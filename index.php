@@ -34,6 +34,7 @@
   <!-- ======= Header ======= -->
   <?php
   include_once 'assets/layout/navbar.php';
+  include_once 'view/modal.php';
   ?>
   <!-- End Header -->
 
@@ -93,6 +94,15 @@
 
   </main><!-- End #main -->
 
+  <?php
+  include_once 'admin/assets/alert.php';
+  ?>
+
+  <?php
+  include_once 'view/modal.php';
+  ?>
+
+
   <!-- ======= Footer ======= -->
   <?php include_once 'assets/layout/footer.php'; ?>
   <!-- End Footer -->
@@ -101,27 +111,23 @@
 
   <div id="preloader"></div>
 
+
+
+  <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
+    <?php mysqli_free_result($fetchUser); ?>
+  <?php } ?>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/delete_review.js"></script>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-  <!-- Comment -->
-  <script src="assets/js/comment.js"></script>
-
-  <?php
-  include_once 'admin/assets/alert.php';
-  ?>
-
-  <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
-    <?php mysqli_free_result($fetchUser); ?>
-  <?php } ?>
-
 
 </body>
 

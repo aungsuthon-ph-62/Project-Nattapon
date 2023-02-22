@@ -69,7 +69,11 @@
                 <div class="btn-group">
                     <a href="profile" class="me-auto mb-2 p-1">
                         <div class="d-flex align-items-center">
-                            <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px;"></div>
+                            <?php if ($user['img_user'] == '') { ?>
+                                <div class="me-2"><img class="rounded-circle" src="img/user.png" alt="User image" style="width: 50px;"></div>
+                            <?php } else { ?>
+                                <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px;"></div>
+                            <?php } ?>
                             <div class="me-auto">
                                 <?= $user['fname']; ?> <?= $user['lname']; ?>
                             </div>

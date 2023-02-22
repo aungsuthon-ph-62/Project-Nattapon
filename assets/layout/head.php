@@ -29,11 +29,16 @@
 <link href="assets/css/main.css?v=<?php echo time(); ?>" rel="stylesheet">
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"></script>
 <!-- jQuery -->
 
 <!-- Sweet Alert -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css
+" rel="stylesheet">
 <!-- Sweet Alert -->
 
 <!-- Font Awesome -->

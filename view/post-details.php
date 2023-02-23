@@ -163,6 +163,7 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
         </div>
 
       <?php } else { ?>
+        <input type="hidden" name="post_ref" id="post_ref" value="<?= $row['id'] ?>">
         <div class="py-3">
           <h4 class="text-center"><i class="bi bi-exclamation-triangle-fill text-warning"></i> กรุณาเข้าสู่ระบบเพื่อแสดงความคิดเห็น!</h4>
           <div class="text-center mt-3">

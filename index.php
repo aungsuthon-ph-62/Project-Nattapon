@@ -11,6 +11,7 @@
   require_once 'php/dateThaiTime.fnc.php';
 
 
+
   if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
     $id = $_SESSION['id'];
     $role = $_SESSION['role'];
@@ -27,9 +28,14 @@
   <?php
   include_once 'assets/layout/head.php';
   ?>
+
+  <?php
+
+  ?>
 </head>
 
 <body>
+
 
   <!-- ======= Header ======= -->
   <?php
@@ -55,7 +61,6 @@
         <div class="row g-5">
 
           <div class="col-lg-8">
-
             <!-- Blog -->
             <?php $page = isset($_GET['page']) ? $_GET['page'] : '';
             if ($page) { ?>
@@ -128,7 +133,6 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
 </body>
 
 </html>

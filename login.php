@@ -1,9 +1,12 @@
 <?php
 session_start();
+require_once "php/conn.php";
+
 if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
-    echo "<script> window.history.back()</script>";
+    header("Location: index");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -43,15 +46,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
                                 <p class="m-0">หากยังเคยสมัครสมาชิก - <a href="register">คลิ๊กที่นี่!</a></p>
                             </div>
                             <hr class="my-3">
-                            <div class="d-grid mt-5 mb-2 px-5">
-                                <button class="btn btn-danger btn-login text-uppercase fw-bold" type="submit">
+                            <div class="d-grid mt-5 mb-2 px-md-5">
+                                <a href="google_auth/redirect" class="btn btn-danger btn-login text-uppercase fw-bold">
                                     <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
-                                </button>
+                                </a>
                             </div>
                             <div class="d-grid px-5">
-                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
-                                    <i class="fab fa-facebook-f me-2"></i> เข้าสู่ระบบด้วย Facebook
-                                </button>
+                                <a href="<?php echo htmlspecialchars($fb_login_url); ?>" class="btn btn-primary btn-login text-uppercase fw-bold">
+                                    <i class="fab fa-facebook-f me-2"></i> Log in with Facebook
+                                </a>
+
                             </div>
                         </form>
                     </div>
@@ -71,6 +75,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
     <?php
     include_once 'view/alert.php';
     ?>
+
+
 </body>
 
 </html>

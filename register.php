@@ -48,9 +48,9 @@
                             </div>
                             <hr class="my-4">
                             <div class="d-grid mb-2 px-5">
-                                <button class="btn btn-danger btn-login text-uppercase fw-bold" type="submit">
-                                    <i class="fab fa-google me-2"></i> Sign in with Google
-                                </button>
+                                <a href="google_auth/redirect" class="btn btn-danger btn-login text-uppercase fw-bold">
+                                    <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
+                                </a>
                             </div>
                             <div class="d-grid px-5">
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">

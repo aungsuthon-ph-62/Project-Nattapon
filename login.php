@@ -51,12 +51,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
                                     <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
                                 </a>
                             </div>
-                            <div class="d-grid px-5">
-                                <a href="<?php echo htmlspecialchars($fb_login_url); ?>" class="btn btn-primary btn-login text-uppercase fw-bold">
+                            <!-- <div class="d-grid px-5">
+                                <a href="" class="btn btn-primary btn-login text-uppercase fw-bold">
                                     <i class="fab fa-facebook-f me-2"></i> Log in with Facebook
                                 </a>
-
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>

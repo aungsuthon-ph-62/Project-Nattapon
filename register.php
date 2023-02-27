@@ -52,11 +52,11 @@
                                     <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
                                 </a>
                             </div>
-                            <div class="d-grid px-5">
+                            <!-- <div class="d-grid px-5">
                                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
                                     <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
                                 </button>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>

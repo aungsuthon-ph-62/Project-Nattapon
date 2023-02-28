@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box bg-gradient-info">
                     <div class="inner">
@@ -35,32 +35,38 @@
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box bg-gradient-success">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3>
+                            <?php $countReview = countReview($conn);
+                            foreach ($countReview as $countReviews) { ?>
+                                <?= $countReviews['noReview'] ?>
+                            <?php }
+                            mysqli_free_result($countReview); ?>
+                        </h3>
 
-                        <p>Bounce Rate</p>
+                        <p>จำนวนการรีวิว </p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                        <i class="fa-solid fa-comments"></i>
                     </div>
-                    <a href="#" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="../admin?p=viewReview" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
                 <!-- small box -->
                 <div class="small-box bg-gradient-warning">
                     <div class="inner">
-                        <h3><?php $countMember = countMember($conn);
+                        <h3 class="text-white"><?php $countMember = countMember($conn);
                             foreach ($countMember as $countMembers) { ?>
                                 <?= $countMembers['noMember'] ?>
                             <?php }
                             mysqli_free_result($countMember); ?></h3>
 
-                        <p>จำนวนผู้ใช้งาน</p>
+                        <p class="text-white">จำนวนผู้ใช้งาน</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -68,22 +74,6 @@
                     <a href="#" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-                <!-- small box -->
-                <div class="small-box bg-gradient-danger">
-                    <div class="inner">
-                        <h3>65</h3>
-
-                        <p>Unique Visitors</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->
@@ -109,6 +99,12 @@
                 <!-- Member card -->
                 <?php
                 include_once "faculty/facultyTable.php";
+                ?>
+                <!-- /.card -->
+
+                <!-- review card -->
+                <?php
+                include_once "review/reviewTable.php";
                 ?>
                 <!-- /.card -->
 

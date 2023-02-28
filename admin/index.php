@@ -25,8 +25,8 @@ session_start();
 }
 
 require_once "php/dateThai.fnc.php";
-require_once "php/count/countPost.php";
-require_once "php/count/countMember.php";
+require_once "php/count.php";
+require_once "php/countComment.php";
 
 
 
@@ -69,16 +69,15 @@ require_once "php/count/countMember.php";
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-  <?php include_once "view/alert.php"; ?>
 
 
   <div class="wrapper">
 
     <!-- Preloader -->
-    <?php include_once "assets/layout/navbar.php"; ?>
-
-    <!-- Navbar -->
     <?php include_once "assets/alert.php"; ?>
+    
+    <!-- Navbar -->
+    <?php include_once "assets/layout/navbar.php"; ?>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -90,6 +89,9 @@ require_once "php/count/countMember.php";
       if ($p) { ?>
         <?php
         switch ($p) {
+          case "viewReview":
+            include_once 'view/review/viewReview.php';
+            break;
           case "viewProfile":
             include_once 'view/profile/viewProfile.php';
             break;

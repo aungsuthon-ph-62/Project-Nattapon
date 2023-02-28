@@ -33,17 +33,17 @@
                                 <span class="description">โพสต์เมื่อ - <?= DateThai($row['post_date']) ?></span>
                             </div>
                             <p class="m-0">
-                                <i class="fa-solid fa-building"></i> ชื่อบริษัท : <b><?= $row['post_topic'] ?></b>
+                                <i class="fa-solid fa-building text-primary"></i> ชื่อบริษัท : <b><?= $row['post_topic'] ?></b>
                             </p>
                             <p>
-                                <i class="fa-solid fa-location-dot"></i> ที่อยู่ : <b><?= $row['post_address'] ?></b>
+                                <i class="fa-solid fa-location-dot text-danger"></i> ที่อยู่ : <b><?= $row['post_address'] ?></b>
                             </p>
                             <p>
-                                <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa-solid fa-circle-info"></i> รายละเอียดโพสต์</a>
+                                <a data-toggle="collapse" class="text-muted" href="#<?php echo $row['post_unid']; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $row['post_unid']; ?>"><i class="fa-solid fa-circle-info text-info"></i> รายละเอียดโพสต์</a>
                             </p>
                             <div class="row">
                                 <div class="col">
-                                    <div class="collapse" id="multiCollapseExample1">
+                                    <div class="collapse" id="<?php echo $row['post_unid']; ?>">
                                         <div class="card card-body border-0 shadow">
                                             <article>
                                                 <?= $row['post_content'] ?>
@@ -53,16 +53,13 @@
                                 </div>
                             </div>
                             <p>
-                                <a data-toggle="collapse" href="#comments" role="button" aria-expanded="false" aria-controls="comments" href="#" class="link-black text-sm">
-                                    <i class="far fa-comments mr-1"></i> คอมเมนต์ (<?php $countComment = countComments($conn, $row['id']);
-                                                                                    foreach ($countComment as $rowComments) {
-                                                                                        echo $rowComments['noComments'];
-                                                                                    }  ?>)
+                                <a data-toggle="collapse" href="#review<?= $row['post_unid'] ?>" role="button" aria-expanded="false" aria-controls="review<?= $row['post_unid'] ?>" href="#" class="link-black text-sm">
+                                    <i class="far fa-comments mr-1 text-info"></i> รีวิว (<?php $countReview = countComments($conn, $row['id']); foreach ($countReview as $reviews) { echo $reviews['noComments']; } ?>)
                                 </a>
                             </p>
                             <div class="row">
                                 <div class="col">
-                                    <div class="collapse" id="comments">
+                                    <div class="collapse" id="review<?= $row['post_unid'] ?>">
                                         <?php
                                         $i = $row['id'];
                                         $commentQuery = "SELECT c.comment_id, c.post_ref, c.parent_id, c.comment, c.comment_by, c.comment_at, u.id, u.fname, u.lname, u.img_user

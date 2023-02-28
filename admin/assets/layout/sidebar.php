@@ -60,6 +60,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="../admin?p=viewReview" class="nav-link <?php if (isset($_GET['p'])) {
+                                                                            $p = $_GET['p'];
+                                                                            if ($p == "viewReview") {
+                                                                                echo "active";
+                                                                            }
+                                                                        } ?>">
+                        <i class="nav-icon fa-solid fa-comments"></i>
+                        <p>จัดการรีวิว</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="../admin?p=viewFaculty" class="nav-link <?php if (isset($_GET['p'])) {
                                                                             $p = $_GET['p'];
                                                                             if ($p == "viewFaculty") {

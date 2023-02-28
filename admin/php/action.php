@@ -529,3 +529,25 @@ function randomNumber($n)
     }
     return $randomString;
 }
+
+
+if (isset($_GET['deleteReview'])) {
+    session_start();
+    global $conn;
+    $id = $_GET['deleteReview'];
+
+    $sql = "DELETE FROM comment WHERE comment_id = '$id'";
+    $query = $conn->query($sql);
+
+    if ($query) {
+        $_SESSION['success'] = "ลบรายการสำเร็จ!";
+        mysqli_close($conn);
+        echo "<script> window.location.href='../../admin?p=viewReview';</script>";
+        exit;
+    } else {
+        $_SESSION['error'] = "เกิดข้อผิดพลาด! กรุณาลองอีกครั้ง";
+        mysqli_close($conn);
+        echo "<script> window.history.back()</script>";
+        exit;
+    }
+}

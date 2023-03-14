@@ -11,7 +11,7 @@
 
                 <li><a class="nav-link active" href="index">หน้าหลัก</a></li>
 
-                <li class="dropdown "><a href="#"><span>หมวดหมู่สาขาวิชา</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <li class="dropdown "><a href="#"><span>หมวดหมู่คณะ</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul class="shadow">
                         <?php
                         $catFaculty = fetchCatFaculty($conn);

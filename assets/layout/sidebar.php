@@ -9,7 +9,7 @@
     </div><!-- End sidebar search formn-->
 
     <div class="sidebar-item categories">
-        <h3 class="sidebar-title">หมวดหมู่สาขาวิชา</h3>
+        <h3 class="sidebar-title">หมวดหมู่คณะ</h3>
         <ul class="mt-3">
             <?php
             $catFaculty = fetchCatFaculty($conn);

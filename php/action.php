@@ -72,7 +72,7 @@ function register()
                         exit;
                     }
                 } else {
-                    $_SESSION['error'] = "กรุณากรอกเบอร์โทรศัพท์";
+                    $_SESSION['error'] = "กรุณากรอกรหัสนักศึกษา";
                     echo "<script> window.history.back()</script>";
                     exit;
                 }
@@ -117,22 +117,22 @@ function login()
                     exit;
                 } else {
                     $_SESSION['error'] = "รหัสผ่านไม่ถูกต้อง";
-                    echo "<script> window.history.back()</script>";
+                    header('location: ../login');
                     exit;
                 }
             } else {
                 $_SESSION['error'] = "อีเมลล์ไม่ถูกต้อง";
-                echo "<script> window.history.back()</script>";
+                header('location: ../login');
                 exit;
             }
         } else {
             $_SESSION['error'] = "กรุณากรอกพาสเวิร์ด";
-            echo "<script> window.history.back()</script>";
+            header('location: ../login');
             exit;
         }
     } else {
         $_SESSION['error'] = "กรุณากรอกอีเมลล์";
-        echo "<script> window.history.back()</script>";
+        header('location: ../login');
         exit;
     }
 }
@@ -220,8 +220,7 @@ function editMember()
     }
 }
 
-if (isset($_POST['edit_row']))
-{
+if (isset($_POST['edit_row'])) {
     global $conn;
 
     $edit_row = mysqli_real_escape_string($conn, $_POST['edit_row']);
@@ -230,8 +229,8 @@ if (isset($_POST['edit_row']))
 
     $query = "UPDATE comment SET comment='$edit_review', user_rating='$new_rating_data' WHERE comment_id = '$edit_row'";
     $result_query =  mysqli_query($conn, $query);
-    
-    echo "แก้ไขรายการสำเร็จ!" ;
+
+    echo "แก้ไขรายการสำเร็จ!";
 }
 
 if (isset($_GET['deleteReview']) && isset($_GET['post_data'])) {
@@ -254,4 +253,3 @@ if (isset($_GET['deleteReview']) && isset($_GET['post_data'])) {
         exit;
     }
 }
-

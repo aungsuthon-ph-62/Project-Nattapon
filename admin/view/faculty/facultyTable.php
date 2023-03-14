@@ -6,7 +6,7 @@ $i = 0;
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">รายการหมวดหมู่สาขาวิชา</h3>
+        <h3 class="card-title">รายการหมวดหมู่คณะ</h3>
         <div class="card-tools">
             <?php if (isset($_GET['p']) != "viewFaculty") { ?>
                 <div class="btn-group">
@@ -15,11 +15,11 @@ $i = 0;
                     </button>
                     <div class="dropdown-menu" role="menu">
                         <a href="../admin?p=viewFaculty" class="dropdown-item"><i class="fa-solid fa-table-cells"></i> ดูทั้งหมด</a>
-                        <a href="../admin?p=addFaculty" class="dropdown-item"><i class="fa-solid fa-plus"></i> เพิ่มสาขาวิชา</a>
+                        <a href="../admin?p=addFaculty" class="dropdown-item"><i class="fa-solid fa-plus"></i> เพิ่มคณะ</a>
                     </div>
                 </div>
             <?php } else { ?>
-                <a href="index?p=addfaculty" class="btn btn-primary"><i class="fa-solid fa-plus"></i> เพิ่มสาขาวิชา</a>
+                <a href="index?p=addfaculty" class="btn btn-primary"><i class="fa-solid fa-plus"></i> เพิ่มคณะ</a>
             <?php } ?>
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -35,7 +35,7 @@ $i = 0;
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>สาขาวิชา</th>
+                    <th>คณะ</th>
                     <th class="text-center">จัดการ</th>
                 </tr>
             </thead>

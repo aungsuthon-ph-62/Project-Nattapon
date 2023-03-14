@@ -78,7 +78,7 @@
                                                                             }
                                                                         } ?>">
                         <i class="nav-icon fa-solid fa-tag"></i>
-                        <p>สาขาวิชา</p>
+                        <p>หมวดหมู่คณะ</p>
                     </a>
                 </li>
                 <li class="nav-item">

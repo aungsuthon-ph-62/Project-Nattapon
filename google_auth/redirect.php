@@ -81,7 +81,7 @@ if (isset($_GET['code'])) {
 
             // Set the session variables
             $_SESSION['id'] = $user_id;
-            $_SESSION['status'] = $user_status;
+            $_SESSION['role'] = $user_status;
 
             // Redirect to index.php
             header('Location: ../index');

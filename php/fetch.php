@@ -19,6 +19,22 @@ function fetchMainPost($conn, $start, $perpage)
 u.fname, u.lname, u.status, p.post_view, p.post_rating
 FROM post_tbl as p 
 INNER JOIN user as u ON u.id = p.post_by 
+WHERE p.post_rating < '4'
+ORDER BY p.id DESC 
+LIMIT {$start}, {$perpage}";
+    $post = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+
+
+    return $post;
+}
+
+function fetchStarPost($conn, $start, $perpage)
+{
+    $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
+u.fname, u.lname, u.status, p.post_view, p.post_rating
+FROM post_tbl as p 
+INNER JOIN user as u ON u.id = p.post_by 
+WHERE p.post_rating >= '4'
 ORDER BY p.id DESC 
 LIMIT {$start}, {$perpage}";
     $post = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
@@ -117,11 +133,27 @@ INNER JOIN user as u ON u.id = p.post_by";
     return $total_page;
 }
 
+function recommendPagination($conn, $perpage)
+{
+
+    $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
+u.fname, u.lname, u.status
+FROM post_tbl as p 
+INNER JOIN user as u ON u.id = p.post_by
+WHERE p.post_rating >= '4'";
+    $post = mysqli_query($conn, $sql) or die("database error:" . mysqli_error($conn));
+
+    $total_record = mysqli_num_rows($post);
+    $total_page = ceil($total_record / $perpage);
+
+    return $total_page;
+}
+
 function search($conn, $input)
 {
     $inp = $input;
     $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.provinces_ref, p.faculty_ref, 
-    u.fname, u.lname, u.status, fac.faculty_name, cp.cp_name, p.post_view, p.post_rating
+    u.fname, u.lname, u.status, fac.faculty_name, cp.cp_name, p.post_view, p.post_rating, cp.cp_name
     FROM post_tbl as p
     INNER JOIN user as u ON u.id = p.post_by
     INNER JOIN category_provinces as cp ON cp.cp_postref = p.provinces_ref

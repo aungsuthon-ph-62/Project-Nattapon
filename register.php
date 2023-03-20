@@ -1,3 +1,4 @@
+<?php require_once 'facebook/login.php'; ?>
 <!DOCTYPE html>
 <html lang="th">
 
@@ -52,11 +53,11 @@
                                     <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
                                 </a>
                             </div>
-                            <!-- <div class="d-grid px-5">
-                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
-                                    <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
-                                </button>
-                            </div> -->
+                            <div class="d-grid px-5">
+                                <a href="<?= $loginUrl ?>" class="btn btn-primary btn-login text-uppercase fw-bold">
+                                    <i class="fab fa-facebook-f me-2"></i> เข้าสู่ระบบด้วย Facebook
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>

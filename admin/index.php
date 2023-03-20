@@ -43,9 +43,9 @@ require_once "php/countComment.php";
   </style>
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.js"></script>
+  <script src="plugins/jquery/jquery.js" async></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script src="plugins/jquery-ui/jquery-ui.min.js" async></script>
 
   <?php $p = isset($_GET['p']) ? $_GET['p'] : ''; {
     if ($p == "addPost" || $p == "editPost" || $p == "postInfo") { ?>
@@ -145,7 +145,7 @@ require_once "php/countComment.php";
 
     <!-- <script src="assets/js/headfnc.js"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" async></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button)

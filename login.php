@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "php/conn.php";
+require_once "facebook/login.php";
 
 if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
     header("Location: index");
@@ -51,11 +52,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['role'])) {
                                     <i class="fab fa-google me-2"></i> เข้าสู่ระบบด้วย Google
                                 </a>
                             </div>
-                            <!-- <div class="d-grid px-5">
-                                <a href="" class="btn btn-primary btn-login text-uppercase fw-bold">
-                                    <i class="fab fa-facebook-f me-2"></i> Log in with Facebook
+                            <div class="d-grid px-5">
+                                <a href="<?= $loginUrl ?>" class="btn btn-primary btn-login text-uppercase fw-bold">
+                                    <i class="fab fa-facebook-f me-2"></i> เข้าสู่ระบบด้วย Facebook
                                 </a>
-                            </div> -->
+                            </div>
                         </form>
                     </div>
                 </div>

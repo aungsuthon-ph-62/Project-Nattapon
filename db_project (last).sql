@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 22, 2023 at 02:57 PM
+-- Generation Time: Mar 20, 2023 at 01:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -40,7 +40,8 @@ CREATE TABLE `category_faculty` (
 INSERT INTO `category_faculty` (`cf_id`, `cf_postref`, `cf_name`) VALUES
 (25, 5152946604, 5),
 (26, 5152946604, 6),
-(28, 9927559699, 5);
+(28, 9927559699, 5),
+(29, 2041495407, 5);
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,9 @@ CREATE TABLE `category_provinces` (
 INSERT INTO `category_provinces` (`cp_id`, `cp_postref`, `cp_name`) VALUES
 (35, 5152946604, 'กรุงเทพมหานคร'),
 (36, 5152946604, 'อุบลราชธานี'),
-(38, 9927559699, 'อุบลราชธานี');
+(38, 9927559699, 'อุบลราชธานี'),
+(39, 2041495407, 'กรุงเทพมหานคร'),
+(40, 2041495407, 'สมุทรปราการ');
 
 -- --------------------------------------------------------
 
@@ -72,7 +75,6 @@ INSERT INTO `category_provinces` (`cp_id`, `cp_postref`, `cp_name`) VALUES
 CREATE TABLE `comment` (
   `comment_id` bigint(20) NOT NULL,
   `post_ref` bigint(20) NOT NULL,
-  `parent_id` bigint(20) NOT NULL,
   `comment` varchar(255) NOT NULL,
   `user_rating` bigint(20) NOT NULL,
   `comment_by` bigint(20) NOT NULL,
@@ -83,9 +85,9 @@ CREATE TABLE `comment` (
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `post_ref`, `parent_id`, `comment`, `user_rating`, `comment_by`, `comment_at`) VALUES
-(146, 30, 0, '', 0, 14, '2023-02-21 16:33:57'),
-(147, 30, 0, '', 0, 14, '2023-02-21 16:36:16');
+INSERT INTO `comment` (`comment_id`, `post_ref`, `comment`, `user_rating`, `comment_by`, `comment_at`) VALUES
+(174, 30, '8y78yy', 5, 14, '2023-02-23 13:07:52'),
+(180, 33, 'testtttt', 1, 14, '2023-03-13 21:04:08');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,7 @@ CREATE TABLE `post_tbl` (
   `post_content` longtext NOT NULL,
   `post_by` bigint(20) NOT NULL,
   `post_view` bigint(20) NOT NULL,
-  `post_rating` bigint(20) DEFAULT NULL,
+  `post_rating` int(11) DEFAULT NULL,
   `post_date` date NOT NULL,
   `post_edit` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -134,30 +136,9 @@ CREATE TABLE `post_tbl` (
 --
 
 INSERT INTO `post_tbl` (`id`, `post_unid`, `post_topic`, `post_banner`, `post_address`, `provinces_ref`, `faculty_ref`, `post_content`, `post_by`, `post_view`, `post_rating`, `post_date`, `post_edit`) VALUES
-(30, 'POST_TOBCUSZNEK', 'บริษัท แอดเพย์ เซอร์วิสพอยท์ จำกัด', 'unnamed-63f3fa4e9c637.jpg', '627/8 ซอย 9 ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 5152946604, 5152946604, '<h2 style=\"font-family: kanit; font-weight: 600; line-height: 1.1; color: rgb(78, 78, 78); margin-bottom: 20px; font-size: 36px; padding-top: 30px; text-align: center;\">เราจะก้าวไปพร้อมกัน</h2><p><img src=\"https://www.addpay.co.th/images/addpay.jpg\" class=\"img-responsive img-rounded center-block\" alt=\"\" style=\"border: 0px; display: block; height: auto; max-width: 100%; border-radius: 6px; margin-right: auto; margin-left: auto; color: rgb(78, 78, 78); font-family: kanit; font-size: 14px; text-align: center;\"></p>', 1, 291, NULL, '2023-02-21', NULL),
-(32, 'POST_AEQL6N7UKR', 'บริษัท อีวานเดอร์ จำกัด', 'maxresdefault (1)-63f3fb16d5735.jpg', 'ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 9927559699, 9927559699, 'test', 1, 6, NULL, '2023-02-21', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `review_table`
---
-
-CREATE TABLE `review_table` (
-  `review_id` int(11) NOT NULL,
-  `post_ref` bigint(20) NOT NULL,
-  `user_name` varchar(200) NOT NULL,
-  `user_rating` int(1) NOT NULL,
-  `user_review` text NOT NULL,
-  `datetime` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `review_table`
---
-
-INSERT INTO `review_table` (`review_id`, `post_ref`, `user_name`, `user_rating`, `user_review`, `datetime`) VALUES
-(19, 30, 'Aungsuthon Phosu', 5, 'test\n', 1676969521);
+(30, 'POST_TOBCUSZNEK', 'บริษัท แอดเพย์ เซอร์วิสพอยท์ จำกัด', 'unnamed-63f3fa4e9c637.jpg', '627/8 ซอย 9 ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 5152946604, 5152946604, '<h2 style=\"font-family: kanit; font-weight: 600; line-height: 1.1; color: rgb(78, 78, 78); margin-bottom: 20px; font-size: 36px; padding-top: 30px; text-align: center;\">เราจะก้าวไปพร้อมกัน</h2><p><img src=\"https://www.addpay.co.th/images/addpay.jpg\" class=\"img-responsive img-rounded center-block\" alt=\"\" style=\"border: 0px; display: block; height: auto; max-width: 100%; border-radius: 6px; margin-right: auto; margin-left: auto; color: rgb(78, 78, 78); font-family: kanit; font-size: 14px; text-align: center;\"></p>', 1, 785, 5, '2023-02-21', NULL),
+(32, 'POST_AEQL6N7UKR', 'บริษัท อีวานเดอร์ จำกัด', 'maxresdefault (1)-63f3fb16d5735.jpg', 'ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 9927559699, 9927559699, 'test', 1, 136, 4, '2023-02-21', NULL),
+(33, 'POST_RSAPOE75WV', 'dawdawdaca', 'download-6409f0bf80e42.png', 'dawdwad', 2041495407, 2041495407, 'ตำแหน่ง : กราฟฟิก<br>ตำแหน่ง : IT', 1, 13, 1, '2023-03-09', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,19 +165,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `fname`, `lname`, `std_no`, `email`, `pass`, `img_user`, `status`, `reg_date`) VALUES
 (1, 'Aungsuthon', 'Phosu', '62114340410', 'aungsuthon.ph.62@ubu.ac.th', '$2y$10$T1dNq9w.WKww4Nb90c8iPuGDdkI15V7.oT.sKkbYKTcIQbRhtqXp6', 'Aungsuthon-63ef3cc1e7a60.jpg', 'Admin', '2023-02-06 23:10:16'),
 (14, 'อังศุธร', 'โพธิ์สุ', '62114340410', 'test@test.com', '$2y$10$oMTp0IaF9JOcj4.27NtTiOhpxJXK1beDAV.CHRpgrUnRozyNUMHU2', 'hq5MAPUc_400x400-63f3b1e38869f.jpg', 'Member', '2023-02-07 00:00:00'),
-(15, 'test', 'test', 'test123@test.com', 'test123@test.com', '$2y$12$H2hpA62PM9yo9rv2R762y.tcdL.ElXuGU/G3IorxTwhcjCUaeevvS', '', 'Member', '2023-02-21 02:19:59');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `view_counter`
---
-
-CREATE TABLE `view_counter` (
-  `id` bigint(20) NOT NULL,
-  `ip_address` text NOT NULL,
-  `visit_date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(22, 'ณัฐพล', 'จุฬา', '', 'nattapon.ch.62@ubu.ac.th', '', '63fcc54539d98.jpg', 'Member', '2023-02-27 21:59:16'),
+(23, 'XD', 'XDDXD', '', 'xddxd.xddxd.07891@gmail.com', '', '6409f03b5d6a8.jpg', 'Member', '2023-03-09 21:42:02'),
+(24, 'Aungsuthon', 'Phosu', '', 'monkung.mullet@gmail.com', '', '641848715ff03.jpg', 'Member', '2023-03-20 18:50:08');
 
 --
 -- Indexes for dumped tables
@@ -241,21 +212,9 @@ ALTER TABLE `post_tbl`
   ADD KEY `post_by` (`post_by`);
 
 --
--- Indexes for table `review_table`
---
-ALTER TABLE `review_table`
-  ADD PRIMARY KEY (`review_id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `view_counter`
---
-ALTER TABLE `view_counter`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -266,19 +225,19 @@ ALTER TABLE `view_counter`
 -- AUTO_INCREMENT for table `category_faculty`
 --
 ALTER TABLE `category_faculty`
-  MODIFY `cf_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `cf_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `category_provinces`
 --
 ALTER TABLE `category_provinces`
-  MODIFY `cp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `cp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `comment_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT for table `faculty`
@@ -290,25 +249,13 @@ ALTER TABLE `faculty`
 -- AUTO_INCREMENT for table `post_tbl`
 --
 ALTER TABLE `post_tbl`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `review_table`
---
-ALTER TABLE `review_table`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `view_counter`
---
-ALTER TABLE `view_counter`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

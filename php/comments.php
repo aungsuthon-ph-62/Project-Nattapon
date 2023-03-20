@@ -10,7 +10,7 @@ if(!empty($_POST["comment"])){
     $comment = mysqli_real_escape_string($conn, $_POST["comment"]);
     $rating_data = mysqli_real_escape_string($conn, $_POST["rating_data"]);
 
-	$insertComments = "INSERT INTO comment (post_ref, parent_id, comment, user_rating, comment_by, comment_at) VALUES ('$post_ref', '$commentID', '$rating_data', '$comment', '$sender', '$date')";
+	$insertComments = "INSERT INTO comment (post_ref, comment, user_rating, comment_by, comment_at) VALUES ('$post_ref', '$rating_data', '$comment', '$sender', '$date')";
 	mysqli_query($conn, $insertComments) or die("database error: ". mysqli_error($conn));	
 	$message = 'แสดงความคิดเห็นสำเร็จ!';
 	$status = array(

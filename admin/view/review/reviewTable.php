@@ -39,7 +39,8 @@ $i = 0;
                     <tr>
                         <td><?php echo $i = $i + 1; ?></td>
                         <td><?php echo $row['comment']; ?></td>
-                        <td class="text-md-center text-truncate"><?php
+                        <td class="text-md-center text-truncate">
+                            <?php
                             for ($star = 1; $star <= 5; $star++) {
                                 $html = '';
                                 $class_name = '';
@@ -52,7 +53,8 @@ $i = 0;
 
                                 echo $html .= '<i class="fas fa-star ' . $class_name . ' fs-6 mr-1"></i>';
                             }
-                            ?></td>
+                            ?>
+                        </td>
                         <td class="text-truncate"><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
                         <td><?php echo DateThai($row['comment_at']); ?></td>
                         <td class="d-md-flex justify-content-center">

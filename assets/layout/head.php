@@ -1,7 +1,9 @@
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta name="robots" content="index, follow">
 
 <title>เว็บรีวิวเเละเเนะนำสถานที่ฝึกงาน</title>
+
 <meta content="เว็บรีวิวเเละเเนะนำสถานที่ฝึกงานสำหรับนักศึกษาคณะวิทยาศาสตร์" name="description">
 <meta content="เว็บรีวิว, รีวิว, แนะนำสถานที่ฝึกงาน, ฝึกงาน, คณะวิทยาศาสตร์, คณะวิทย์, วิทยาศาสตร์, วิทย์, มหาวิทยาลัยอุบลราชธานี, ม.อุบล, คณะวิทย์ ม.อุบล" name="keywords">
 
@@ -21,7 +23,6 @@
 <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-<!-- Variables CSS Files. Uncomment your preferred color scheme -->
 <!-- <link href="assets/css/variables.css" rel="stylesheet"> -->
 <link href="assets/css/variables-blue.css?v=<?php echo time(); ?>" rel="stylesheet">
 

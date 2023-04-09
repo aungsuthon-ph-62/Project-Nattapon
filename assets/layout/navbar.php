@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
         <a href="index" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-            <img src="admin/assets/img/logo-nobg.png" alt="Logo">
+            <img src="admin/assets/img/logo-nobg.png" alt="Logo" loading="lazy">
             <!-- <h1>Logo<span>.</span></h1> -->
         </a>
 
@@ -50,6 +50,11 @@
                 </li>
 
                 <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
+                    <li><a href="chat/users" target="_blank"><span><i class="fa-solid fa-message"></i> แชท</span></a>
+                    </li>
+                <?php } ?>
+
+                <?php if (isset($_SESSION['id']) && isset($_SESSION['role'])) { ?>
                     <div class="d-block d-md-none">
                         <li><a class="nav-link" href="index">ข้อมูลผู้ใช้</a></li>
                         <li><a class="nav-link" href="index">ออกจากระบบ</a></li>
@@ -70,9 +75,9 @@
                     <a href="profile" class="me-auto mb-2 p-1">
                         <div class="d-flex align-items-center">
                             <?php if ($user['img_user'] == '') { ?>
-                                <div class="me-2"><img class="rounded-circle" src="img/user.png" alt="User image" style="width: 50px;"></div>
+                                <div class="me-2"><img class="rounded-circle" src="img/user.png" alt="User image" style="width: 100%; object-fit:cover;" loading="lazy"></div>
                             <?php } else { ?>
-                                <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px;"></div>
+                                <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px; object-fit:cover;" loading="lazy"></div>
                             <?php } ?>
                             <div class="me-auto">
                                 <?= $user['fname']; ?> <?= $user['lname']; ?>
@@ -87,7 +92,7 @@
                         <li class="px-3">
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="php/action.php?action=logout"><i class="fa-solid fa-right-from-bracket text-danger"></i> ออกจากระบบ</a></li>
+                        <li><a class="dropdown-item" href="php/action.php?action=logout&id=<?= $user['id']; ?>"><i class="fa-solid fa-right-from-bracket text-danger"></i> ออกจากระบบ</a></li>
                     </ul>
                 </div>
             </div>

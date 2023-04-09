@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
     <title>
         เว็บรีวิวเเละเเนะนำสถานที่ฝึกงาน
     </title>
 
     <!-- FAVICON -->
-
+    <link href="../admin/assets/img/logo-nobg.png" rel="icon">
+    <link href="../admin/assets/img/logo-nobg.png" rel="apple-touch-icon">
     <!-- FAVICON -->
 
     <!-- jQuery -->

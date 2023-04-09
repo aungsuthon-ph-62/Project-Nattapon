@@ -50,7 +50,7 @@
                         <p>จำนวนการรีวิว </p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-comments"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
                     </div>
                     <a href="../admin?p=viewReview" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -61,10 +61,10 @@
                 <div class="small-box bg-gradient-warning">
                     <div class="inner">
                         <h3 class="text-white"><?php $countMember = countMember($conn);
-                            foreach ($countMember as $countMembers) { ?>
+                                                foreach ($countMember as $countMembers) { ?>
                                 <?= $countMembers['noMember'] ?>
                             <?php }
-                            mysqli_free_result($countMember); ?></h3>
+                                                mysqli_free_result($countMember); ?></h3>
 
                         <p class="text-white">จำนวนผู้ใช้งาน</p>
                     </div>

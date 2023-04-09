@@ -43,9 +43,9 @@ require_once "php/countComment.php";
   </style>
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.js" async></script>
+  <script src="plugins/jquery/jquery.js"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js" async></script>
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 
   <?php $p = isset($_GET['p']) ? $_GET['p'] : ''; {
     if ($p == "addPost" || $p == "editPost" || $p == "postInfo") { ?>
@@ -145,54 +145,54 @@ require_once "php/countComment.php";
 
     <!-- <script src="assets/js/headfnc.js"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js" async></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js" defer></script>
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.js" defer></script>
+    <script src="dist/js/adminlte.js"></script>
 
     <?php $p = isset($_GET['p']) ? $_GET['p'] : ''; {
       if ($p == "addPost" || $p == "editPost" || $p == "postInfo") { ?>
         <!-- Select2 -->
-        <script src="plugins/select2/js/select2.full.min.js" defer></script>
-        <script src="assets/js/selected2.js" defer></script>
+        <script src="plugins/select2/js/select2.full.min.js"></script>
+        <script src="assets/js/selected2.js"></script>
         <!-- JS Validation -->
-        <script src="plugins/jquery-validation/jquery.validate.min.js" defer></script>
-        <script src="plugins/jquery-validation/additional-methods.min.js" defer></script>
+        <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+        <script src="plugins/jquery-validation/additional-methods.min.js"></script>
         <!-- Summernote -->
-        <script src="plugins/summernote/summernote-bs4.min.js" defer></script>
-        <script src="assets/js/summernote.js" defer></script>
+        <script src="plugins/summernote/summernote-bs4.min.js"></script>
+        <script src="assets/js/summernote.js"></script>
       <?php } elseif ($p == "addMember" || $p == "editMember" || $p == "addFaculty" || $p == "editFaculty" || $p = "viewProfile") { ?>
         <!-- JS Validation -->
-        <script src="plugins/jquery-validation/jquery.validate.min.js" defer></script>
-        <script src="plugins/jquery-validation/additional-methods.min.js" defer></script>
+        <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+        <script src="plugins/jquery-validation/additional-methods.min.js"></script>
       <?php } ?>
     <?php } ?>
 
     <!-- Datatable -->
-    <script src="plugins/datatables/jquery.dataTables.min.js" async></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js" async></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js" async></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js" async></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js" async></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js" async></script>
-    <script src="plugins/jszip/jszip.min.js" async></script>
-    <script src="plugins/pdfmake/pdfmake.min.js" async></script>
-    <script src="plugins/pdfmake/vfs_fonts.js" async></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js" async></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js" async></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js" async></script>
-    <script src="assets/js/datatable.js" async></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="assets/js/datatable.js"></script>
     <!-- Dashboard -->
-    <script src="dist/js/pages/dashboard.js" defer></script>
+    <script src="dist/js/pages/dashboard.js"></script>
 
-    <script defer>
+    <script>
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: "btn bg-gradient-success rounded-pill mx-3",

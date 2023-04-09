@@ -11,7 +11,7 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
   <article class="blog-details">
 
     <div class="post-img">
-      <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid w-100" data-aos="zoom-in" data-aos-delay="15000">
+      <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid w-100" data-aos="zoom-in" data-aos-delay="1000" loading="lazy" width="100%" style="object-fit: cover;">
     </div>
 
     <h2 class="title"><?= $row['post_topic'] ?></h2>
@@ -179,9 +179,9 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
         <div class="d-flex align-items-top justify-content-between">
           <div class="d-flex">
             <?php if ($comment['img_user'] == '') { ?>
-              <div class="comment-img"><img src="img/user.png" class="rounded-circle" alt="User image"></div>
+              <div class="comment-img"><img src="img/user.png" class="rounded-circle" alt="User image" loading="lazy"></div>
             <?php } else { ?>
-              <div class="comment-img"><img src="img/user_img/<?= $comment['img_user']; ?>" class="rounded-circle" alt="<?= $comment['img_user']; ?>"></div>
+              <div class="comment-img"><img src="img/user_img/<?= $comment['img_user']; ?>" class="rounded-circle" alt="<?= $comment['img_user']; ?>" loading="lazy"></div>
             <?php } ?>
             <div>
               <h5>

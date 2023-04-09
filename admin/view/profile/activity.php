@@ -13,20 +13,22 @@
     <div class="card-body">
         <div class="tab-content">
             <div class="active tab-pane" id="activity">
-
+                <h4 class="text-center mb-5">กิจกรรมทั้งหมดของคุณ</h4>
                 <?php
-                $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date,
-                        u.fname, u.lname, u.img_user
-                        FROM post_tbl as p 
-                        INNER JOIN user as u ON u.id = p.post_by 
-                        ORDER BY p.id DESC";
+                $id = isset($_SESSION['id']);
+                $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.post_by, p.post_rating,
+                u.fname, u.lname, u.img_user
+                FROM post_tbl as p 
+                INNER JOIN user as u ON u.id = p.post_by 
+                WHERE p.post_by = '$id'
+                ORDER BY p.id DESC";
                 $postTable_result = mysqli_query($conn, $sql);
                 $postCount = mysqli_num_rows($postTable_result);
                 if ($postCount > 0) { ?>
                     <?php foreach ($postTable_result as $row) { ?>
                         <div class="post clearfix">
                             <div class="user-block">
-                                <img class="img-circle" src="../img/user_img/<?= $row['img_user'] ?>" alt="user image">
+                                <img class="img-circle" src="../img/user_img/<?= $row['img_user'] ?>" alt="user image" loading="lazy">
                                 <span class="username">
                                     <p class="m-0"><?= $row['fname'] ?> <?= $row['lname'] ?></p>
                                 </span>
@@ -35,10 +37,29 @@
                             <p class="m-0">
                                 <i class="fa-solid fa-building text-primary"></i> ชื่อบริษัท : <b><?= $row['post_topic'] ?></b>
                             </p>
-                            <p>
+                            <p class="m-0">
                                 <i class="fa-solid fa-location-dot text-danger"></i> ที่อยู่ : <b><?= $row['post_address'] ?></b>
                             </p>
-                            <p>
+                            <p class="m-0">
+                                <i class="fa-solid fa-star text-warning"></i> คะแนน :
+                                <b>
+                                    <?php
+                                    for ($star = 1; $star <= 5; $star++) {
+                                        $html = '';
+                                        $class_name = '';
+
+                                        if ($row['post_rating'] >= $star) {
+                                            $class_name = 'text-warning';
+                                        } else {
+                                            $class_name = 'star-light';
+                                        }
+
+                                        echo $html .= '<i class="fas fa-star ' . $class_name . ' fs-6 mr-1"></i>';
+                                    }
+                                    ?>
+                                </b>
+                            </p>
+                            <p class="m-0">
                                 <a data-toggle="collapse" class="text-muted" href="#<?php echo $row['post_unid']; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $row['post_unid']; ?>"><i class="fa-solid fa-circle-info text-info"></i> รายละเอียดโพสต์</a>
                             </p>
                             <div class="row">
@@ -54,7 +75,10 @@
                             </div>
                             <p>
                                 <a data-toggle="collapse" href="#review<?= $row['post_unid'] ?>" role="button" aria-expanded="false" aria-controls="review<?= $row['post_unid'] ?>" href="#" class="link-black text-sm">
-                                    <i class="far fa-comments mr-1 text-info"></i> รีวิว (<?php $countReview = countComments($conn, $row['id']); foreach ($countReview as $reviews) { echo $reviews['noComments']; } ?>)
+                                    <i class="fa-solid fa-star-half-stroke text-info"></i> รีวิว (<?php $countReview = countComments($conn, $row['id']);
+                                                                                                    foreach ($countReview as $reviews) {
+                                                                                                        echo $reviews['noComments'];
+                                                                                                    } ?>)
                                 </a>
                             </p>
                             <div class="row">
@@ -62,21 +86,35 @@
                                     <div class="collapse" id="review<?= $row['post_unid'] ?>">
                                         <?php
                                         $i = $row['id'];
-                                        $commentQuery = "SELECT c.comment_id, c.post_ref, c.parent_id, c.comment, c.comment_by, c.comment_at, u.id, u.fname, u.lname, u.img_user
+                                        $commentQuery = "SELECT c.comment_id, c.post_ref, c.comment, c.comment_by, c.comment_at, c.user_rating, u.id, u.fname, u.lname, u.img_user
                                 FROM comment as c
                                 INNER JOIN user as u ON u.id = c.comment_by
-                                WHERE c.parent_id = '0' AND c.post_ref = '$i' ORDER BY c.comment_id DESC";
+                                WHERE c.post_ref = '$i' ORDER BY c.comment_id DESC";
                                         $commentsResult = mysqli_query($conn, $commentQuery) or die("database error:" . mysqli_error($conn));
                                         $commentsCount = mysqli_num_rows($commentsResult);
                                         if ($commentsCount > 0) { ?>
                                             <?php foreach ($commentsResult as $comment) { ?>
                                                 <div class="post clearfix">
-                                                    <div class="user-block">
+                                                    <div class="user-block m-0">
                                                         <img class="img-circle" src="../img/user_img/<?= $comment['img_user'] ?>" alt="user image">
                                                         <span class="username">
                                                             <a class="text-muted"><?= $comment['fname'] ?> <?= $comment['lname'] ?></a>
                                                         </span>
                                                         <span class="description">แสดงความคิดเห็นเมื่อ - <?= DateThai($comment['comment_at']); ?></span>
+                                                        <span class="description">
+                                                            <?php for ($star = 1; $star <= 5; $star++) {
+                                                                $html = '';
+                                                                $class_name = '';
+
+                                                                if ($comment['user_rating'] >= $star) {
+                                                                    $class_name = 'text-warning';
+                                                                } else {
+                                                                    $class_name = 'star-light';
+                                                                }
+
+                                                                echo $html .= '<i class="fas fa-star ' . $class_name . ' fs-6 mr-1"></i>';
+                                                            } ?>
+                                                        </span>
                                                     </div>
                                                     <p>
                                                         <?= $comment['comment'] ?>
@@ -99,14 +137,14 @@
                     <div class="post">
                         <div class="text-center py-5">
                             <h5>ยังไม่มีรายการโพสต์!</h5>
-                            <img class="img-fluid" src="assets/img/out-of-stock.png" alt="Out of post" style="width: 80px; height:80 px;" />
+                            <img class="img-fluid" src="assets/img/out-of-stock.png" alt="Out of post" style="width: 80px; height:80 px;" loading="lazy" />
                         </div>
                     </div>
                 <?php } ?>
             </div>
 
             <div class="tab-pane" id="settings">
-                <form id="postForm" method="post" action="php/action.php" enctype="multipart/form-data">
+                <form id="postForm" method="post" action="php/action.php" enctype="multipart/form-data" autocomplete="off">
                     <input type="hidden" name="action" value="editMember">
                     <input type="hidden" name="oldImage" value="<?= $user['img_user'] ?>">
                     <input type="hidden" name="uid" value="<?= $user['id'] ?>">

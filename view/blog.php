@@ -36,7 +36,7 @@ $postCount = mysqli_num_rows($post);
                     <div class="card-body p-0">
 
                         <div class="post-img">
-                            <img src="admin/assets/img/postBanner/<?= $starRow['post_banner'] ?>" alt="<?= $starRow['post_banner'] ?>" class="img-fluid rounded" data-aos="fade-in" data-aos-delay="1000">
+                            <img src="admin/assets/img/postBanner/<?= $starRow['post_banner'] ?>" alt="<?= $starRow['post_banner'] ?>" class="img-fluid rounded" data-aos="fade-in" data-aos-delay="1000" loading="lazy" width="100%" style="object-fit: cover;">
                         </div>
 
                         <h2 class="title">
@@ -112,7 +112,7 @@ $postCount = mysqli_num_rows($post);
         <h3><i class="fa-solid fa-star text-warning"></i> รายการแนะนำ : </h3>
         <div class="text-center py-5">
             <h3>ยังไม่มีรายการโพสต์!</h3>
-            <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" />
+            <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" loading="lazy" />
         </div>
     <?php } ?>
     <!-- End Recommend blog -->
@@ -129,7 +129,7 @@ $postCount = mysqli_num_rows($post);
                     <div class="card-body p-0">
 
                         <div class="post-img">
-                            <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid rounded" data-aos="fade-in" data-aos-delay="1000">
+                            <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid rounded" data-aos="fade-in" data-aos-delay="1000" width="100%" style="object-fit: cover;">
                         </div>
 
                         <h2 class="title">
@@ -205,7 +205,7 @@ $postCount = mysqli_num_rows($post);
         <h3><i class="fa-solid fa-bars fw-bold text-secondary"></i> รายการทั่วไป : </h3>
         <div class="text-center py-5">
             <h3>ยังไม่มีรายการโพสต์!</h3>
-            <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" />
+            <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" loading="lazy" />
         </div>
     <?php } ?>
 </div><!-- End blog posts list -->

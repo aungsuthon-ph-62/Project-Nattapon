@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1><i class="fa-solid fa-comments"></i> รีวิว</h1>
+                <h1><i class="fa-solid fa-star-half-stroke"></i> รีวิว</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">

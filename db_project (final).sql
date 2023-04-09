@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 20, 2023 at 01:11 PM
+-- Generation Time: Apr 09, 2023 at 03:10 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -112,6 +112,37 @@ INSERT INTO `faculty` (`id`, `faculty_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `msg_id` bigint(20) NOT NULL,
+  `incoming_msg_id` bigint(20) NOT NULL,
+  `outgoing_msg_id` bigint(20) NOT NULL,
+  `msg` varchar(255) NOT NULL,
+  `send_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`msg_id`, `incoming_msg_id`, `outgoing_msg_id`, `msg`, `send_at`) VALUES
+(19, 1, 14, 'dwadawdaw', '2023-04-07 19:46:47'),
+(20, 1, 14, 'กฟไกไฟกไๆฟ', '2023-04-07 19:48:11'),
+(21, 1, 14, 'dawdawdaw', '2023-04-08 20:18:05'),
+(22, 14, 1, 'dwadaw', '2023-04-09 07:04:22'),
+(23, 14, 1, 'dwadwadaw', '2023-04-09 07:10:39'),
+(24, 14, 1, 'dawdaw', '2023-04-09 07:10:43'),
+(25, 14, 1, 'dawdawdaw', '2023-04-09 07:10:46'),
+(26, 14, 1, 'dawdawdaw', '2023-04-09 07:10:48'),
+(27, 14, 1, 'dwadwdaw', '2023-04-09 07:10:50'),
+(28, 14, 1, 'dwadwa', '2023-04-09 07:15:36'),
+(29, 14, 1, 'testttttt', '2023-04-09 07:16:13');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `post_tbl`
 --
 
@@ -136,8 +167,8 @@ CREATE TABLE `post_tbl` (
 --
 
 INSERT INTO `post_tbl` (`id`, `post_unid`, `post_topic`, `post_banner`, `post_address`, `provinces_ref`, `faculty_ref`, `post_content`, `post_by`, `post_view`, `post_rating`, `post_date`, `post_edit`) VALUES
-(30, 'POST_TOBCUSZNEK', 'บริษัท แอดเพย์ เซอร์วิสพอยท์ จำกัด', 'unnamed-63f3fa4e9c637.jpg', '627/8 ซอย 9 ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 5152946604, 5152946604, '<h2 style=\"font-family: kanit; font-weight: 600; line-height: 1.1; color: rgb(78, 78, 78); margin-bottom: 20px; font-size: 36px; padding-top: 30px; text-align: center;\">เราจะก้าวไปพร้อมกัน</h2><p><img src=\"https://www.addpay.co.th/images/addpay.jpg\" class=\"img-responsive img-rounded center-block\" alt=\"\" style=\"border: 0px; display: block; height: auto; max-width: 100%; border-radius: 6px; margin-right: auto; margin-left: auto; color: rgb(78, 78, 78); font-family: kanit; font-size: 14px; text-align: center;\"></p>', 1, 785, 5, '2023-02-21', NULL),
-(32, 'POST_AEQL6N7UKR', 'บริษัท อีวานเดอร์ จำกัด', 'maxresdefault (1)-63f3fb16d5735.jpg', 'ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 9927559699, 9927559699, 'test', 1, 136, 4, '2023-02-21', NULL),
+(30, 'POST_TOBCUSZNEK', 'บริษัท แอดเพย์ เซอร์วิสพอยท์ จำกัด', 'unnamed-63f3fa4e9c637.jpg', '627/8 ซอย 9 ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 5152946604, 5152946604, '<h2 style=\"font-family: kanit; font-weight: 600; line-height: 1.1; color: rgb(78, 78, 78); margin-bottom: 20px; font-size: 36px; padding-top: 30px; text-align: center;\">เราจะก้าวไปพร้อมกัน</h2><p><img src=\"https://www.addpay.co.th/images/addpay.jpg\" class=\"img-responsive img-rounded center-block\" alt=\"\" style=\"border: 0px; display: block; height: auto; max-width: 100%; border-radius: 6px; margin-right: auto; margin-left: auto; color: rgb(78, 78, 78); font-family: kanit; font-size: 14px; text-align: center;\"></p>', 1, 787, 5, '2023-02-21', NULL),
+(32, 'POST_AEQL6N7UKR', 'บริษัท อีวานเดอร์ จำกัด', 'maxresdefault (1)-63f3fb16d5735.jpg', 'ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000', 9927559699, 9927559699, 'test', 1, 138, 4, '2023-02-21', NULL),
 (33, 'POST_RSAPOE75WV', 'dawdawdaca', 'download-6409f0bf80e42.png', 'dawdwad', 2041495407, 2041495407, 'ตำแหน่ง : กราฟฟิก<br>ตำแหน่ง : IT', 1, 13, 1, '2023-03-09', NULL);
 
 -- --------------------------------------------------------
@@ -148,6 +179,7 @@ INSERT INTO `post_tbl` (`id`, `post_unid`, `post_topic`, `post_banner`, `post_ad
 
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
+  `unique_id` bigint(20) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `std_no` varchar(255) NOT NULL,
@@ -155,19 +187,20 @@ CREATE TABLE `user` (
   `pass` varchar(255) NOT NULL,
   `img_user` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `reg_date` datetime NOT NULL
+  `reg_date` datetime NOT NULL,
+  `chat_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `fname`, `lname`, `std_no`, `email`, `pass`, `img_user`, `status`, `reg_date`) VALUES
-(1, 'Aungsuthon', 'Phosu', '62114340410', 'aungsuthon.ph.62@ubu.ac.th', '$2y$10$T1dNq9w.WKww4Nb90c8iPuGDdkI15V7.oT.sKkbYKTcIQbRhtqXp6', 'Aungsuthon-63ef3cc1e7a60.jpg', 'Admin', '2023-02-06 23:10:16'),
-(14, 'อังศุธร', 'โพธิ์สุ', '62114340410', 'test@test.com', '$2y$10$oMTp0IaF9JOcj4.27NtTiOhpxJXK1beDAV.CHRpgrUnRozyNUMHU2', 'hq5MAPUc_400x400-63f3b1e38869f.jpg', 'Member', '2023-02-07 00:00:00'),
-(22, 'ณัฐพล', 'จุฬา', '', 'nattapon.ch.62@ubu.ac.th', '', '63fcc54539d98.jpg', 'Member', '2023-02-27 21:59:16'),
-(23, 'XD', 'XDDXD', '', 'xddxd.xddxd.07891@gmail.com', '', '6409f03b5d6a8.jpg', 'Member', '2023-03-09 21:42:02'),
-(24, 'Aungsuthon', 'Phosu', '', 'monkung.mullet@gmail.com', '', '641848715ff03.jpg', 'Member', '2023-03-20 18:50:08');
+INSERT INTO `user` (`id`, `unique_id`, `fname`, `lname`, `std_no`, `email`, `pass`, `img_user`, `status`, `reg_date`, `chat_status`) VALUES
+(1, 0, 'Aungsuthon', 'Phosu', '62114340410', 'aungsuthon.ph.62@ubu.ac.th', '$2y$10$T1dNq9w.WKww4Nb90c8iPuGDdkI15V7.oT.sKkbYKTcIQbRhtqXp6', 'Aungsuthon-63ef3cc1e7a60.jpg', 'Admin', '2023-02-06 23:10:16', 'กำลังใช้งาน'),
+(14, 1267389216, 'อังศุธร', 'โพธิ์สุ', '62114340410', 'test@test.com', '$2y$10$oMTp0IaF9JOcj4.27NtTiOhpxJXK1beDAV.CHRpgrUnRozyNUMHU2', 'hq5MAPUc_400x400-63f3b1e38869f.jpg', 'Member', '2023-02-07 00:00:00', 'ไม่ได้ใช้งานในขณะนี้'),
+(22, 0, 'ณัฐพล', 'จุฬา', '', 'nattapon.ch.62@ubu.ac.th', '', '63fcc54539d98.jpg', 'Member', '2023-02-27 21:59:16', 'ไม่ได้ใช้งานในขณะนี้'),
+(23, 0, 'XD', 'XDDXD', '', 'xddxd.xddxd.07891@gmail.com', '', '6409f03b5d6a8.jpg', 'Member', '2023-03-09 21:42:02', 'ไม่ได้ใช้งานในขณะนี้'),
+(24, 0, 'Aungsuthon', 'Phosu', '', 'monkung.mullet@gmail.com', '', '641848715ff03.jpg', 'Member', '2023-03-20 18:50:08', 'ไม่ได้ใช้งานในขณะนี้');
 
 --
 -- Indexes for dumped tables
@@ -201,6 +234,14 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `faculty`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`msg_id`),
+  ADD KEY `incoming_msg_id` (`incoming_msg_id`),
+  ADD KEY `outgoing_msg_id` (`outgoing_msg_id`);
 
 --
 -- Indexes for table `post_tbl`
@@ -246,6 +287,12 @@ ALTER TABLE `faculty`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `msg_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
 -- AUTO_INCREMENT for table `post_tbl`
 --
 ALTER TABLE `post_tbl`
@@ -280,6 +327,13 @@ ALTER TABLE `category_provinces`
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`post_ref`) REFERENCES `post_tbl` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`comment_by`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`incoming_msg_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`outgoing_msg_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `post_tbl`

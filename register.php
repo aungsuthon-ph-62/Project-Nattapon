@@ -4,9 +4,6 @@
 
 <head>
     <?php
-    session_start();
-    ?>
-    <?php
     include_once 'assets/layout/head.php';
     ?>
     <link rel="stylesheet" href="assets/css/login.css">

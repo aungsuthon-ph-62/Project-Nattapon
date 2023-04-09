@@ -110,11 +110,19 @@ function login()
             if ($result > 0) {
                 $stored_pass = $result['pass'];
                 if (password_verify($password, $stored_pass)) {
-                    $_SESSION['id'] = $result['id'];
-                    $_SESSION['role'] = $result['status'];
-                    $_SESSION['success'] = "เข้าสู่ระบบสำเร็จ!";
-                    header('location: ../index');
-                    exit;
+                    $status = "กำลังใช้งาน";
+                    $sql2 = mysqli_query($conn, "UPDATE user SET chat_status = '{$status}' WHERE id = {$result['id']}");
+                    if ($sql2) {
+                        $_SESSION['id'] = $result['id'];
+                        $_SESSION['role'] = $result['status'];
+                        $_SESSION['success'] = "เข้าสู่ระบบสำเร็จ!";
+                        header('location: ../index');
+                        exit;
+                    } else {
+                        $_SESSION['error'] = "เกิดข้อผิดพลาด!";
+                        echo "<script> window.history.back()</script>";
+                        exit;
+                    }
                 } else {
                     $_SESSION['error'] = "รหัสผ่านไม่ถูกต้อง";
                     header('location: ../login');
@@ -139,10 +147,21 @@ function login()
 
 function logout()
 {
-    header("Location: ../login?success=ออกจากระบบสำเร็จ!");
-    session_unset();
-    session_destroy();
-    exit;
+    global $conn;
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    if (isset($id)) {
+        $status = "ไม่ได้ใช้งานในขณะนี้";
+        $sql = mysqli_query($conn, "UPDATE user SET chat_status = '{$status}' WHERE id={$_GET['id']}");
+        if ($sql) {
+            session_unset();
+            session_destroy();
+            header("Location: ../login?success=ออกจากระบบสำเร็จ!");
+            mysqli_close($conn);
+            exit;
+        }
+    } else {
+        header("location: ../index");
+    }
 }
 
 function editMember()

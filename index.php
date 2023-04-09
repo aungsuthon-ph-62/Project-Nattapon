@@ -49,7 +49,7 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="hero-animated" class="hero-animated d-flex align-items-center shadow-lg">
       <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out" data-aos-delay="7000">
-        <img src="admin/assets/img/logo-horizon-removebg-preview.png" class="img-fluid animated">
+        <img src="admin/assets/img/logo-horizon-removebg-preview.png" class="img-fluid animated" loading="lazy" width="100%" style="object-fit: cover;">
       </div>
     </section>
     <!-- End Breadcrumbs -->
@@ -59,14 +59,12 @@
       <div class="container py-md-5" data-aos="fade-up" data-aos-delay="10000">
 
         <div class="row g-5">
-
           <div class="col-lg-8">
             <!-- Blog -->
             <?php $page = isset($_GET['page']) ? $_GET['page'] : '';
             if ($page) { ?>
               <?php
               switch ($page) {
-               
                 case "search":
                   include_once 'view/search.php';
                   break;

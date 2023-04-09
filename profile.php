@@ -63,9 +63,9 @@
                             <div class="col-lg-5">
                                 <div class="about-img">
                                     <?php if ($user['img_user'] == '') { ?>
-                                        <img src="img/user.png" id='previewImg' class="img-fluid img-thumbnail border-0 rounded-5 shadow-lg" alt="User image" data-aos="fade-in" data-aos-delay="10000">
+                                        <img src="img/user.png" id='previewImg' class="img-fluid img-thumbnail border-0 rounded-5 shadow-lg" alt="User image" data-aos="fade-in" data-aos-delay="1000">
                                     <?php } else { ?>
-                                        <img src="img/user_img/<?= $user['img_user'] ?>" id='previewImg' class="img-fluid img-thumbnail border-0 rounded-5 shadow-lg" alt="<?= $user['img_user'] ?>" data-aos="fade-in" data-aos-delay="10000">
+                                        <img src="img/user_img/<?= $user['img_user'] ?>" id='previewImg' class="img-fluid img-thumbnail border-0 rounded-5 shadow-lg" alt="<?= $user['img_user'] ?>" loading="lazy" width="100%" style="object-fit: cover;">
                                     <?php } ?>
                                 </div>
                             </div>

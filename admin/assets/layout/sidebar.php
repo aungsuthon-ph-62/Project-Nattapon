@@ -61,12 +61,12 @@
                 </li>
                 <li class="nav-item">
                     <a href="../admin?p=viewReview" class="nav-link <?php if (isset($_GET['p'])) {
-                                                                            $p = $_GET['p'];
-                                                                            if ($p == "viewReview") {
-                                                                                echo "active";
-                                                                            }
-                                                                        } ?>">
-                        <i class="nav-icon fa-solid fa-comments"></i>
+                                                                        $p = $_GET['p'];
+                                                                        if ($p == "viewReview") {
+                                                                            echo "active";
+                                                                        }
+                                                                    } ?>">
+                        <i class="nav-icon fa-solid fa-star-half-stroke"></i>
                         <p>จัดการรีวิว</p>
                     </a>
                 </li>
@@ -94,6 +94,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="../chat/users" class="nav-link" target="_blank">
+                        <i class="nav-icon fa-solid fa-comments"></i>
+                        <p>
+                            แชท
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">เมนูผู้ใช้งาน</li>
                 <li class="nav-item">
                     <a href="../admin?p=viewProfile" class="nav-link <?php if (isset($_GET['p'])) {
@@ -109,7 +117,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../php/action.php?action=logout" class="nav-link">
+                    <a href="../php/action.php?action=logout&id=<?= $user['id']; ?>" class="nav-link">
                         <i class="nav-icon text-danger bi bi-box-arrow-right"></i>
                         <p class="text">ออกจากระบบ</p>
                     </a>

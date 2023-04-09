@@ -14,7 +14,7 @@
                     <article class="d-flex flex-column" data-aos="zoom-out" data-aos-delay="10000">
 
                         <div class="post-img">
-                            <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid" data-aos="fade-in" data-aos-delay="1000">
+                            <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="img-fluid" data-aos="fade-in" data-aos-delay="1000" loading="lazy" width="100%" style="object-fit: cover;">
                         </div>
 
                         <h2 class="title">
@@ -74,7 +74,7 @@
         <?php } else { ?>
             <div class="text-center py-5">
                 <h3>ยังไม่มีรายการโพสต์!</h3>
-                <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" />
+                <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" loading="lazy" />
             </div>
         <?php } ?>
     </div><!-- End blog posts list -->

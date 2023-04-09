@@ -16,7 +16,7 @@ body {
 }
 .wrapper {
   background: #fff;
-  max-width: 450px;
+  max-width: 650px;
   width: 100%;
   border-radius: 16px;
   box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
@@ -143,6 +143,12 @@ body {
 :is(.users, .users-list) .details span {
   font-size: 18px;
   font-weight: 500;
+}
+:is(.users, .users-list) .content .details p span {
+  font-size: 17px;
+  font-style: normal;
+  font-weight: normal;
+  color: #67676a;
 }
 .fa-user {
   color: #0d6efd;

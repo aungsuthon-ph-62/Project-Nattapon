@@ -3,6 +3,7 @@ incoming_id = form.querySelector(".incoming_id").value,
 inputField = form.querySelector(".input-field"),
 sendBtn = form.querySelector("button"),
 chatBox = document.querySelector(".chat-box");
+sendIcon = document.querySelector("#sendIcon");
 
 form.onsubmit = (e)=>{
     e.preventDefault();
@@ -11,9 +12,15 @@ form.onsubmit = (e)=>{
 inputField.focus();
 inputField.onkeyup = ()=>{
     if(inputField.value != ""){
+        inputField.classList.add("active");
         sendBtn.classList.add("active");
+        sendIcon.classList.remove("fa-ellipsis");
+        sendIcon.classList.add("fa-location-arrow");
     }else{
+        inputField.classList.remove("active");
         sendBtn.classList.remove("active");
+        sendIcon.classList.remove("fa-location-arrow");
+        sendIcon.classList.add("fa-ellipsis");
     }
 }
 

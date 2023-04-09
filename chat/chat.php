@@ -40,7 +40,7 @@ if (!isset($_SESSION['id'])) {
       <form action="#" class="typing-area">
         <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
         <input type="text" name="message" class="input-field" placeholder="พิมพ์ข้อความที่นี่..." autocomplete="off">
-        <button><i class="fa-solid fa-location-arrow"></i></button>
+        <button><i class="fa-solid fa-ellipsis" id="sendIcon"></i></button>
       </form>
     </section>
   </div>

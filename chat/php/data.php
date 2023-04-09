@@ -5,6 +5,8 @@ function format_date($data) {
     $date2 = date_create(date('Y-m-d H:i:s'));
     $diff = date_diff($date1, $date2);
 
+
+
     if ($diff->y > 0) {
         return " · " . $diff->format('%y year' . ($diff->y > 1 ? '' : ''));
     } else if ($diff->m > 0) {
@@ -13,8 +15,10 @@ function format_date($data) {
         return " · " . $diff->format('%d วัน' . ($diff->d > 1 ? '' : ''));
     } else if ($diff->h > 0) {
         return " · " . $diff->format('%h ชั่วโมง' . ($diff->h > 1 ? '' : ''));
+    } else if ($diff->i > 0) {
+        return " · " . $diff->format('%i นาที' . ($diff->h > 1 ? '' : ''));
     } else {
-        return " · " . $diff->format('%i นาที' . ($diff->i > 1 ? '' : ''));
+        return " · " . "เมื่อสักครู่";
     }
 }
 ;
@@ -32,14 +36,19 @@ while ($row = mysqli_fetch_assoc($query)) {
     } else {
         $you = "";
     }
+    if (isset($row2['incoming_msg_id'])) {
+        ($outgoing_id == $row2['incoming_msg_id']) ? $opp = "opp" : $opp = "";
+    } else {
+        $opp = "";
+    }
     ($row['chat_status'] == "ไม่ได้ใช้งานในขณะนี้") ? $offline = "offline" : $offline = "";
     ($outgoing_id == $row['id']) ? $hid_me = "hide" : $hid_me = "";
 
-    if ($you != "") {
+    if (isset($row2['send_at'])) {
         $date_time = Format_date($row2['send_at']);
-        $last_msg = " " . "" . $date_time;
+        $last_msg = "" . "" . $date_time;
     } else {
-        $last_msg = " ";
+        $last_msg = "";
     };
 
     $output .= '<a href="chat?user_id=' . $row['id'] . '">
@@ -47,7 +56,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                     <img src="../img/user_img/' . $row['img_user'] . '" alt="' . $row['img_user'] . '" loading="lazy">
                     <div class="details">
                         <span>' . $row['fname'] . " " . $row['lname'] . '</span>
-                        <p>' . $you . $msg . '<span>' . $last_msg . '</span></p>                                          
+                        <p class='.$opp.'>' . $you . $msg . '<span>' . $last_msg . '</span></p>                                          
                     </div>
                     </div>
                     <div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div>

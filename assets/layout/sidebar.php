@@ -49,7 +49,7 @@
             <?php } else { ?>
                 <div class="text-center py-5">
                     <h3>ยังไม่มีรายการโพสต์!</h3>
-                    <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" />
+                    <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" style="width: 100%; object-fit:cover;" loading="lazy"/>
                 </div>
             <?php } ?>
 

@@ -75,9 +75,9 @@
                     <a href="profile" class="me-auto mb-2 p-1">
                         <div class="d-flex align-items-center">
                             <?php if ($user['img_user'] == '') { ?>
-                                <div class="me-2"><img class="rounded-circle" src="img/user.png" alt="User image" style="width: 100%; object-fit:cover;" loading="lazy"></div>
+                                <div class="me-2"><img class="rounded-circle" src="img/user.png" alt="User image" style="width: 50px; object-fit:cover;" loading="lazy" loading="lazy"></div>
                             <?php } else { ?>
-                                <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px; object-fit:cover;" loading="lazy"></div>
+                                <div class="me-2"><img class="rounded-circle" src="img/user_img/<?= $user['img_user']; ?>" alt="<?= $user['img_user']; ?>" style="width: 50px;" loading="lazy"></div>
                             <?php } ?>
                             <div class="me-auto">
                                 <?= $user['fname']; ?> <?= $user['lname']; ?>

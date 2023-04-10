@@ -8,9 +8,9 @@ function format_date($data) {
 
 
     if ($diff->y > 0) {
-        return " · " . $diff->format('%y year' . ($diff->y > 1 ? '' : ''));
+        return " · " . $diff->format('%y ปี' . ($diff->y > 1 ? '' : ''));
     } else if ($diff->m > 0) {
-        return " · " . $diff->format('%m month' . ($diff->m > 1 ? '' : ''));
+        return " · " . $diff->format('%m เดือน' . ($diff->m > 1 ? '' : ''));
     } else if ($diff->d > 0) {
         return " · " . $diff->format('%d วัน' . ($diff->d > 1 ? '' : ''));
     } else if ($diff->h > 0) {

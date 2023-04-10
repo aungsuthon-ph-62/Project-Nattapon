@@ -2,6 +2,8 @@ const searchBar = document.querySelector(".search input"),
 searchIcon = document.querySelector(".search button"),
 usersList = document.querySelector(".users-list");
 
+
+// โชว์และซ่อนปุ่มค้นหา
 searchIcon.onclick = ()=>{
   searchBar.classList.toggle("show");
   searchIcon.classList.toggle("active");
@@ -12,6 +14,7 @@ searchIcon.onclick = ()=>{
   }
 }
 
+// พิมพ์ค้นหาชื่อ
 searchBar.onkeyup = ()=>{
   let searchTerm = searchBar.value;
   if(searchTerm != ""){
@@ -33,6 +36,7 @@ searchBar.onkeyup = ()=>{
   xhr.send("searchTerm=" + searchTerm);
 }
 
+// แสดงผู้ใช้งาน
 setInterval(() =>{
   let xhr = new XMLHttpRequest();
   xhr.open("GET", "php/users.php", true);

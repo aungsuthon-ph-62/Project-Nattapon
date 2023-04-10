@@ -9,6 +9,7 @@ form.onsubmit = (e)=>{
     e.preventDefault();
 }
 
+// เปลี่ยนสีช่องพิมพ์ข้อความและไอคอนส่งข้อความ
 inputField.focus();
 inputField.onkeyup = ()=>{
     if(inputField.value != ""){
@@ -24,6 +25,7 @@ inputField.onkeyup = ()=>{
     }
 }
 
+
 sendBtn.onclick = ()=>{
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "php/insert-chat.php", true);
@@ -38,6 +40,8 @@ sendBtn.onclick = ()=>{
     let formData = new FormData(form);
     xhr.send(formData);
 }
+
+
 chatBox.onmouseenter = ()=>{
     chatBox.classList.add("active");
 }
@@ -62,7 +66,7 @@ setInterval(() =>{
     }
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send("incoming_id="+incoming_id);
-}, 500);
+}, 1000);
 
 function scrollToBottom(){
     chatBox.scrollTop = chatBox.scrollHeight;

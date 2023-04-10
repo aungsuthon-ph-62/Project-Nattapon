@@ -5,18 +5,25 @@ require_once '../../php/dateThaiTime.fnc.php';
 if (isset($_SESSION['id'])) {
     function format_date($data)
     {
-        $dayTH = array("อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์");
-        $now = time();
-        $date = strtotime($data);
-        $diff = $now - $date;
-        $same_day = date('Y-m-d', $now) === date('Y-m-d', $date);
+        date_default_timezone_set('Asia/Bangkok');
+        $date1 = date_create_from_format('Y-m-d H:i:s', $data);
+        $date2 = date_create(date('Y-m-d H:i:s'));
+        $diff = date_diff($date1, $date2);
 
-        if ($same_day) {
-            return date('H:i', $date);
+
+
+        if ($diff->y > 0) {
+            return $diff->format('%y ปี' . ($diff->y > 1 ? '' : ''));
+        } else if ($diff->m > 0) {
+            return $diff->format('%m เดือน' . ($diff->m > 1 ? '' : ''));
+        } else if ($diff->d > 0) {
+            return $diff->format('%d วัน' . ($diff->d > 1 ? '' : ''));
+        } else if ($diff->h > 0) {
+            return $diff->format('%h ชั่วโมง' . ($diff->h > 1 ? '' : ''));
+        } else if ($diff->i > 0) {
+            return $diff->format('%i นาที' . ($diff->h > 1 ? '' : ''));
         } else {
-            $week = date("w", $date);
-            $time = date('H:i', $date);
-            return "วัน$dayTH[$week]"." "."$time";
+            return "เมื่อสักครู่";
         }
     };
 

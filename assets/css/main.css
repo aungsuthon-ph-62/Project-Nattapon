@@ -2076,32 +2076,13 @@ section {
 
 .blog .blog-details .content blockquote {
   overflow: hidden;
-  background-color: rgba(var(--color-secondary-rgb), 0.06);
-  padding: 60px;
-  position: relative;
-  text-align: center;
-  margin: 20px 0;
+  padding: 30px;
 }
 
 .blog .blog-details .content blockquote p {
-  color: var(--color-default);
   line-height: 1.6;
   margin-bottom: 0;
-  font-style: italic;
-  font-weight: 500;
-  font-size: 22px;
-}
-
-.blog .blog-details .content blockquote:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background-color: var(--color-secondary);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  word-break: break-all;
 }
 
 .blog .blog-details .meta-top {

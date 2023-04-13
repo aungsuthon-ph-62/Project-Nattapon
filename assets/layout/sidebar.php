@@ -39,7 +39,7 @@
             <?php if ($postCount > 0) { ?>
                 <?php foreach ($post as $row) { ?>
                     <div class="post-item mt-3">
-                        <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="flex-shrink-0">
+                        <img src="admin/assets/img/postBanner/<?= $row['post_banner'] ?>" alt="<?= $row['post_banner'] ?>" class="flex-shrink-0" style="object-fit:cover;" loading="lazy">
                         <div>
                             <h4><a href="?page=post-detail&i=<?= $row['post_unid'] ?>"><?= $row['post_topic'] ?></a></h4>
                             <time datetime="<?= $row['post_date'] ?>"><?= DateThai($row['post_date']) ?></time>
@@ -49,7 +49,7 @@
             <?php } else { ?>
                 <div class="text-center py-5">
                     <h3>ยังไม่มีรายการโพสต์!</h3>
-                    <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" style="width: 100%; object-fit:cover;" loading="lazy"/>
+                    <img class="img-fluid w-50" src="admin/assets/img/out-of-stock.png" alt="No comment" style="object-fit:cover;" loading="lazy"/>
                 </div>
             <?php } ?>
 

@@ -31,10 +31,10 @@ if (isset($_GET['page']) && isset($_GET['i'])) { ?>
       </ul>
     </div><!-- End meta top -->
 
-    <div class="content py-3">
-      <article style="display:block" data-aos="fade-in" data-aos-delay="20000">
-        <?php print_r($row['post_content']); ?>
-      </article>
+    <div class="content">
+      <blockquote data-aos="fade-in" data-aos-delay="20000">
+        <?= $row['post_content']; ?>
+      </blockquote>
     </div><!-- End post content -->
 
     <div class="contact border-top">

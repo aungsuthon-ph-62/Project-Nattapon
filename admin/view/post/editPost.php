@@ -5,7 +5,7 @@
     u.fname, u.lname
     FROM post_tbl as p 
     INNER JOIN user as u ON u.id = p.post_by 
-    ORDER BY p.id = '$id'";
+    WHERE p.id = '$id'";
     $result = mysqli_query($conn, $sql);
     $post = mysqli_fetch_assoc($result);
 

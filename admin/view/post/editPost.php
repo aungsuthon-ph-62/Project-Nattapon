@@ -53,10 +53,10 @@
                                     if ($post['post_banner'] == "") { ?>
                                         <label for="exampleInputFile"><i class="fa-solid fa-image"></i> รูปภาพหน้าปก</label>
                                         <div class="d-none d-md-block">
-                                            <img src="assets/img/out-of-stock.png" class='img-thumbnail rounded-lg' style="width: 30%;">
+                                            <img src="assets/img/out-of-stock.png" class='img-thumbnail rounded-lg' id="previewImg" style="width: 30%; object-fit:cover;" loading="lazy">
                                         </div>
                                         <div class="d-block d-md-none">
-                                            <img src="assets/img/out-of-stock.png" class='img-thumbnail rounded-lg' style="width: 70%;">
+                                            <img src="assets/img/out-of-stock.png" class='img-thumbnail rounded-lg' id="previewImg" style="width: 70%; object-fit:cover;" loading="lazy">
                                         </div>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -66,10 +66,10 @@
                                     <?php } else { ?>
                                         <label for="exampleInputFile"><i class="fa-solid fa-image"></i> รูปภาพหน้าปก</label>
                                         <div class="d-none d-md-block">
-                                            <img src="assets/img/postBanner/<?= $post['post_banner'] ?>" class='img-thumbnail rounded-lg' style="width: 30%;">
+                                            <img src="assets/img/postBanner/<?= $post['post_banner'] ?>" class='img-thumbnail rounded-lg' id="previewImg" style="width: 30%; object-fit:cover;" loading="lazy">
                                         </div>
                                         <div class="d-block d-md-none">
-                                            <img src="assets/img/postBanner/<?= $post['post_banner'] ?>" class='img-thumbnail rounded-lg' style="width: 70%;">
+                                            <img src="assets/img/postBanner/<?= $post['post_banner'] ?>" class='img-thumbnail rounded-lg' id="previewImg" style="width: 70%; object-fit:cover;" loading="lazy">
                                         </div>
                                     <?php } ?>
                                     <div class="input-group">

@@ -15,7 +15,6 @@
             <div class="active tab-pane" id="activity">
                 <h4 class="text-center mb-5">กิจกรรมทั้งหมดของคุณ</h4>
                 <?php
-                $id = isset($_SESSION['id']);
                 $sql = "SELECT p.id, p.post_unid, p.post_topic, p.post_banner, p.post_address, p.post_content, p.post_date, p.post_by, p.post_rating,
                 u.fname, u.lname, u.img_user
                 FROM post_tbl as p 

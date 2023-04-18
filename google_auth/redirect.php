@@ -44,7 +44,7 @@ if (isset($_GET['code'])) {
             file_put_contents($file, $pictureData);
 
             // Insert the user into the database
-            $sql = "INSERT INTO user (fname, lname, email, img_user, status, reg_date) VALUES ('$fname', '$lname', '$email', '$filename', 'Member', '$date')";
+            $sql = "INSERT INTO user (fname, lname, email, img_user, status, reg_date, chat_status) VALUES ('$fname', '$lname', '$email', '$filename', 'Member', '$date', 'กำลังใช้งาน')";
             if (mysqli_query($conn, $sql)) {
                 // Get the user ID and status from the database
                 $sql = "SELECT id, status FROM user WHERE email = '$email'";
@@ -75,13 +75,19 @@ if (isset($_GET['code'])) {
             // Get the user ID and status from the database
             $sql = "SELECT id, status FROM user WHERE email = '$email'";
             $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $user_id = $row['id'];
-            $user_status = $row['status'];
 
-            // Set the session variables
-            $_SESSION['id'] = $user_id;
-            $_SESSION['role'] = $user_status;
+            if ($result) {
+                $row = mysqli_fetch_assoc($result);
+                $status = "กำลังใช้งาน";
+                $sql2 = mysqli_query($conn, "UPDATE user SET chat_status = '{$status}' WHERE id = {$row['id']}");
+                if ($sql2) {
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['role'] = $row['status'];
+                    $_SESSION['success'] = "เข้าสู่ระบบสำเร็จ!";
+                    header('location: ../index');
+                    exit;
+                }
+            }
 
             // Redirect to index.php
             header('Location: ../index');
